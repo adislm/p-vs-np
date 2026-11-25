@@ -11,6 +11,57 @@ null result with the range. A program that emits a false counterexample is worse
 than no program, so every claimed witness is re-run by hand before it is recorded
 here.
 
+## A falsified conjecture — arXiv:2604.23188, Conjecture 4
+
+This is the one positive result of the exercise: a conjecture stated in April 2026
+that is false as written, with a one-word counterexample.
+
+**Source.** Fazekas, Mammoliti, Mercaş and Simpson, *Binary Words Containing Few
+Abelian Squares*, arXiv:2604.23188v1 (25 April 2026).
+
+**The conjecture, verbatim** from the paper:
+
+> **Conjecture 4.** A binary word of length n contains at least ⌊n/4⌋ abelian
+> squares and if it contains exactly ⌊n/4⌋ abelian squares then all the abelian
+> squares are trivial.
+
+where an abelian square is a factor uv with u and v having the same letter counts,
+and — the paper's own definition — an abelian square of the form a^{2i} or b^{2i}
+is **trivial**.
+
+**Counterexample.** w = `abab`, with n = 4 and ⌊n/4⌋ = 1.
+
+- The factor `abab` equals (ab)(ab), and `ab` and `ab` have equal letter counts, so
+  it is an abelian square. Its half contains both letters, so it is **not**
+  trivial.
+- Every even-length factor of `abab` is one of: length 2 — `ab`, `ba`, `ab`; none
+  is an abelian square, since a length-2 abelian square would need its two single
+  letters to be equal; length 4 — `abab` only.
+- Hence θ(`abab`) = 1 = ⌊n/4⌋, the antecedent of the second clause holds, and the
+  conclusion "all the abelian squares are trivial" fails.
+
+The count is 1 whether θ is read as occurrences or as distinct factors, so the
+counterexample does not depend on that ambiguity.
+
+**The paper contradicts itself.** Its own table of minimum values lists
+
+    n   Number   Words achieving this
+    4   1        abab, baba
+
+so `abab` and `baba` are the paper's own minimisers at n = 4, and they are exactly
+the words that break clause 2. The likely intent was n ≥ 5; for 5 ≤ n ≤ 46 no
+word with θ = ⌊n/4⌋ has a non-trivial abelian square.
+
+**Verification performed.** The conjecture statement and the definition of
+"trivial" were extracted from the paper's HTML full text, not from a summary. All
+arXiv identifiers in this document were resolved against the arXiv API. The
+witness was checked clause by clause by hand.
+
+**What this is and is not.** It is a genuine defect in an unrefereed preprint,
+found by exhaustive search and confirmed by the paper's own data. It is not a deep
+result and it does not affect the paper's main theorems. The honest description is
+that clause 2 needs the qualifier n ≥ 5.
+
 ## 1. OEIS conjectures
 
 Four conjectures attached to OEIS entries, all still standing over the ranges
@@ -118,6 +169,52 @@ order 9, giving 288,266 in total. The quoted K₉ witness for D = {1} was verifi
 by hand: on a complete graph the weight is the total label sum minus the vertex's
 own label, so labels 6,3,5,4,8,2,7,9,1 give weights 39,42,40,41,37,43,38,36,44,
 which are distinct.
+
+## 3. Number theory: three under-tested conjectures
+
+All three survived. Each program reproduces the OEIS terms before searching, and
+the π computation was cross-checked against an independent implementation.
+
+| Conjecture | Source | Range | Result |
+| --- | --- | --- | --- |
+| (least prime > n²) − n² ≤ 1 + φ(n), a strengthening of Oppermann | OEIS A053000, Luo 2023 | n ≤ 10⁷ | survives; equality only at n = 12, 18, 42 |
+| no prefix of the decimal expansion of π is a perfect square | OEIS A011545, Haken 1977 | n ≤ 10⁶ digits | survives |
+| a(n) > 0 for all n > 1, where a(n) counts k < n with equal prime counts in consecutive length-n intervals | OEIS A238281, Sun 2014 | n ≤ 20 000 | survives; extends the tabulated n ≤ 5000 |
+
+**The Luo case is the most one-sided.** The largest value of the gap found was
+541, at n = 4 292 936, where 540 consecutive composites follow n². The bound
+1 + φ(n) at that n is 1 995 841, a slack of roughly two million. The conjecture
+holds with enormous room throughout the range, which makes it survivable by a
+wide margin and correspondingly hard to falsify.
+
+**The Haken case** is a striking statement — no prefix of π's decimal expansion is
+a perfect square — and it held to a million digits. A necessary-condition filter
+on quadratic residues reduced a million exact square tests to 352 candidates, with
+a positive control confirming that no genuine square could be filtered out.
+
+**One limit worth stating.** The A238281 result extends a tabulated range rather
+than opening new ground, and the extension is by a factor of four.
+
+## 4. Combinatorial designs: re-verifications, not new ground
+
+Recorded for completeness and explicitly *not* as results.
+
+- **Antimagic labelling (Hartsfield–Ringel).** All 1,893,731 connected *labelled*
+  graphs on 2 to 7 vertices were searched by exhaustive backtracking; the only
+  non-antimagic graph is K₂, the conjectured exception. This is an independent
+  re-derivation by a different route from the unlabelled search in §2, and the two
+  agree.
+- **Ryser's conjecture** (every odd-order Latin square has a transversal).
+  Exhaustive for n = 3 and n = 5 using the fact that transversal existence is
+  isotopy-invariant; randomised for n = 7 and n = 9. The literature already covers
+  n ≤ 9, so this is a re-verification.
+- **Circulant Hadamard matrices.** The difference-set search recovered the order-4
+  case and timed out at order 36. Logan–Mossinghoff settle the question to
+  n ≤ 4·10³⁰, so nothing here is open at any computable range.
+
+The value in this section is the negative kind: it confirms that the search
+apparatus agrees with known results, which is what makes the null results in §1–3
+worth recording at all.
 
 ## What this section is not
 

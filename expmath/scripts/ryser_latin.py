@@ -36,12 +36,11 @@ def reduced_latin(n):
     """Yield every reduced Latin square (row0 = col0 = 0,1,...,n-1)."""
     L=[[0]*n for _ in range(n)]
     L[0]=list(range(n))
-    perms=list(permutations(range(1,n)))   # row r>=1 has p[0]=r fixed
     def rec(r):
         if r==n:
             yield [row[:] for row in L]; return
-        for tail in perms:
-            p=(r,)+tail
+        for tail in permutations([x for x in range(n) if x!=r]):
+            p=(r,)+tail           # row r: permutation of 0..n-1 with p[0]=r
             ok=True
             for c in range(1,n):
                 for rr in range(r):
@@ -54,10 +53,9 @@ def reduced_latin(n):
 
 def random_reduced_latin(n, rng):
     L=[[0]*n for _ in range(n)]; L[0]=list(range(n))
-    perms=list(permutations(range(1,n)))
     def rec(r):
         if r==n: return True
-        ps=perms[:]; rng.shuffle(ps)
+        ps=list(permutations([x for x in range(n) if x!=r])); rng.shuffle(ps)
         for tail in ps:
             p=(r,)+tail; ok=True
             for c in range(1,n):
