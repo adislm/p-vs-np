@@ -159,3 +159,80 @@ conclusions.** Ilango's random-oracle reductions from hypergraph vertex cover to
 MCSP (SICOMP 2026) and Huang–Ilango–Ren's approximation hardness for MOCSP
 (SICOMP 2025) sit in the same frame. The notable counter-current is the 2024
 upper bound, which shows MCSP is easier than brute force.
+
+## 3. The algorithmic method
+
+**Verdict: DEAD for P vs NP, ANALOGY-ONLY for TC⁰ and NC¹.** This is the only
+technique that has produced a genuine non-relativising, non-naturalising lower
+bound, and it is worth understanding exactly why it cannot reach the problem.
+
+### The engine
+
+Williams: if C-SAT on n-input, n^k-size circuits runs in O(2ⁿ/n^c) for every k,
+then NEXP ⊄ C.
+
+Assume NEXP ⊆ C, hence NEXP ⊆ P/poly. The **easy witness lemma**
+(Impagliazzo–Kabanets–Wigderson 2002) then says every NEXP verifier's
+yes-instances have witnesses that are truth tables of polynomial-size circuits.
+Take Succinct-3SAT: an instance D on n inputs whose truth table is a 2ⁿ-bit 3CNF.
+If satisfiable, some small W satisfies it. Guess W; then "tt(W) satisfies tt(D)"
+is a C-circuit of polynomial size on n inputs. The fast solver decides it in
+2ⁿ/n^ω(1), contradicting the nondeterministic time hierarchy, which places some
+L ∈ NTIME(2ⁿ) outside NTIME(2ⁿ/n^ω(1)).
+
+Three things make NEXP essential: witnesses are exponentially long, so
+compressing them is substantive; NEXP ⊆ C supplies the easy witness lemma's
+hypothesis; and the contradiction is placed at the 2ⁿ hierarchy scale.
+
+### Why ACC⁰ worked and nothing above it does
+
+| Class | Status | Obstruction |
+| --- | --- | --- |
+| ACC⁰ | **NEXP ⊄ ACC⁰** (Williams 2011) | low-degree polynomial representations over finite rings, made algorithmic |
+| TC⁰ | open | MAJORITY has approximate polynomial degree Ω(n), so nothing compresses and the engine dies |
+| NC¹ | believed unreachable | 2ⁿ/n^ω(1) formula-SAT would refute SETH, so the missing algorithm is believed *false*, not merely missing |
+| P/poly | open | CircuitSAT in 2ⁿ/n^ω(1) is unknown |
+
+ACC⁰ was tractable because Razborov–Smolensky and Beigel–Tarui give it low-degree
+representations over finite rings — MOD₂ is parity, so ACC⁰ contains AC⁰[⊕] — and
+William's contribution was to *algorithmise* that representation via multipoint
+evaluation, getting a 2^(n^δ) divisor that beats any polynomial. TC⁰ has no such
+representation; MAJORITY's approximate degree is linear.
+
+### The decisive point
+
+**The method's hypothesis is implied by P = NP.** If P = NP then CircuitSAT is in
+polynomial time, hence certainly in 2ⁿ/n^ω(1), and the theorem applies — yielding
+NEXP ⊄ P/poly, which is true unconditionally anyway. So the method is consistent
+with both worlds and cannot be the thing that distinguishes them. It is
+*downstream* of P = NP rather than a route to it.
+
+Put concretely: even a full 2ⁿ/n^ω(1) CircuitSAT algorithm yields only
+NEXP ⊄ P/poly — one exponential above NP. Getting NP ⊄ P/poly from this template
+would require CircuitSAT ∈ P, which is P = NP itself.
+
+### What actually bounds the method
+
+- **Scale.** Murray–Williams (2018) extended the easy witness lemma to NP and NQP,
+  giving NQP ⊄ ACC⁰∘THR at quasipolynomial scale. It stops at NQP: NP witnesses
+  are only polynomially long, the easy-witness circuit has O(log n) inputs, brute
+  force is polynomial, and there is no hierarchy there to contradict.
+- **Relativisation.** Vyas–Williams (2023) give an oracle where CAPP ∈ P but
+  EXP^NP has polynomial-size circuits; Chen–Hu–Ren (ITCS 2026) derive new
+  algebrisation barriers from Missing-String communication.
+- **Locality.** Chen–Hirahara–Oliveira–Pich–Rajgopal–Santhanam (2022) show local
+  arguments also hold for small-fan-in oracle circuits, so they cannot certify
+  strong general bounds. Pich (2024) localises the approximation method.
+- **The frontier moved elsewhere.** Recent progress came from range avoidance and
+  iterative win–win rather than the SAT-algorithm method: S₂E/1 ⊄ SIZE[2ⁿ/n]
+  (Chen–Hirahara–Ren; Li, STOC 2024), AMEXP ∩ coAMEXP (Chen–Li–Liang 2025),
+  E^{prMA}/1 (Ren–Williams 2026). None of these is the engine above, and none
+  reaches NEXP.
+
+### What this programme did deliver
+
+NEXP ⊄ ACC⁰, and size strengthenings of it. That is a real result, it was the
+first lower bound against a class containing AC⁰[⊕], and it remains the only
+proof that the barriers can be beaten at all — for a class far above NP and far
+below P/poly. It is the existence proof for the method, not a step toward the
+theorem.
