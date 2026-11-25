@@ -31,6 +31,12 @@ def find_diffset(v, k, lam, timeout=None):
         nodes[0]+=1
         if len(D) == k:
             return all(count[s]==lam for s in range(1,v))
+        # Lower-bound prune: with r=k-|D| elements still to add, any single
+        # difference s can gain at most 2 per new element (pairs {x,x-s},{x,x+s}).
+        r = k - len(D)
+        for s in range(1, v):
+            if count[s] + 2*r < lam:
+                return None
         # next element must be > last (canonical increasing order)
         start = D[-1]+1
         # remaining slots after this choice

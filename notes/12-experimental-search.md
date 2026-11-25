@@ -66,6 +66,59 @@ is finding the intended objects and not merely some strong pseudoprime.
 that holds to n = 12 is weak evidence. This one is recorded for completeness, not
 as a meaningful test.
 
+## 2. Antimagic conjectures in graph theory
+
+Three open conjectures, all searched over every graph in a range, with a verified
+witness produced for every graph where the conjecture predicts one. Method: local
+search for a witness, then an exact independent verifier — so "no failure" always
+means an explicit certificate was checked, never merely that the search gave up.
+
+### Hartsfield–Ringel edge-antimagic
+
+Every connected G ≠ K₂ admits a bijection f : E(G) → {1,…,m} with pairwise
+distinct vertex sums σ(v) = Σ_{e ∋ v} f(e). Source: *Pearls in Graph Theory*
+(1990); Gallian's Dynamic Survey DS6. The K₂ exception is genuine — its single
+labeling gives both endpoints the same sum.
+
+**Result: no counterexample**, across all 273,193 connected unlabelled graphs on
+at most 9 vertices (996 of order ≤7, 11,117 of order 8, 261,080 of order 9). Every
+graph received a verified witness.
+
+### Hefetz–Mütze–Schwartz antimagic orientation
+
+Every connected G has an orientation D and a bijection on its arcs with pairwise
+distinct in-sums. Source: *J. Graph Theory* 64 (2010), Conjecture 1.1.
+
+**Result: no counterexample** over the same 273,193 graphs, jointly searching
+orientations and labelings.
+
+### D-antimagic with D = {1}
+
+A bijection f : V(G) → {1,…,n} with pairwise distinct weights
+ω(v) = Σ_{u ∈ N_D(v)} f(u), where N_D(v) is the set of vertices at distance in D.
+Conjecture: such an f exists **iff** no two vertices have equal D-neighbourhoods.
+Source: Simanjuntak et al., *Symmetry* 13(11):2071 (2021).
+
+**Result: no counterexample** across all 288,266 unlabelled graphs of order at
+most 9, connected and disconnected. This is the only entry in this section that
+extends a published check rather than reproducing one: the paper's verification
+reaches order 8, and this reaches order 9. That is a small increment, not a
+resolution, and the claim about the paper's range is taken from its own
+description.
+
+The twin-containing cases are not searched — two vertices with equal
+D-neighbourhoods necessarily have equal weights, so the conjecture predicts no
+labeling and there is nothing to find. The 2,218,478 twin-free connected
+9-vertex instances all received verified labelings.
+
+**Checks performed during the audit of this record.** The counts were recomputed
+independently and match exactly: 996 + 11,117 + 261,080 = 273,193 connected
+graphs on ≤9 vertices, and 274,668 − 261,080 = 13,588 disconnected graphs of
+order 9, giving 288,266 in total. The quoted K₉ witness for D = {1} was verified
+by hand: on a complete graph the weight is the total label sum minus the vertex's
+own label, so labels 6,3,5,4,8,2,7,9,1 give weights 39,42,40,41,37,43,38,36,44,
+which are distinct.
+
 ## What this section is not
 
 None of these is evidence for the conjectures in any mathematical sense. A
