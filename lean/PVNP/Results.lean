@@ -189,5 +189,28 @@ theorem ne_of_conp_ne (M : Model)
   intro hP
   exact h fun L => (M.np_eq_conp_of_P_eq_NP hP L).symm
 
+/-- Any class containing P that fails to contain all of NP witnesses P ≠ NP.
+
+This is the shape shared by every proven arrow in `notes/05`: NP ⊄ P/poly,
+NP ⊄ P/O(n) and NP ⊄ ACC⁰ all instantiate it, with `C` the circuit or advice
+class and `hsub` the inclusion `P ⊆ C`. The hard part in each case is the second
+hypothesis — that NP escapes `C` — which is exactly the open circuit lower bound.
+Formalising the implication isolates where the difficulty lives. -/
+theorem ne_of_np_not_subset (M : Model) (C : Language → Prop)
+    (hsub : ∀ L : Language, M.MemP L → C L)
+    (h : ∃ L : Language, M.MemNP L ∧ ¬ C L) :
+    ¬ ∀ L : Language, M.MemP L ↔ M.MemNP L := by
+  rintro hiff
+  obtain ⟨L, hNP, hnotC⟩ := h
+  exact hnotC (hsub L ((hiff L).2 hNP))
+
+/-- The contrapositive form: if P = NP then every class containing P contains
+NP as well. So a separation from any such class is a separation from P. -/
+theorem subset_of_P_eq_NP (M : Model) (C : Language → Prop)
+    (hsub : ∀ L : Language, M.MemP L → C L)
+    (hiff : ∀ L : Language, M.MemP L ↔ M.MemNP L) :
+    ∀ L : Language, M.MemNP L → C L :=
+  fun _ hNP => hsub _ ((hiff _).2 hNP)
+
 end Model
 end PVNP

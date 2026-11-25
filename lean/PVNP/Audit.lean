@@ -24,3 +24,5 @@ import PVNP
 #print axioms PVNP.Model.memP_union
 #print axioms PVNP.Model.np_eq_conp_of_P_eq_NP
 #print axioms PVNP.Model.ne_of_conp_ne
+#print axioms PVNP.Model.ne_of_np_not_subset
+#print axioms PVNP.Model.subset_of_P_eq_NP

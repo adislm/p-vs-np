@@ -88,5 +88,10 @@ All conditional on `Model`, all without `sorry`:
   intersection and union
 - `np_eq_conp_of_P_eq_NP` : P = NP ⟹ NP = coNP
 - `ne_of_conp_ne` : NP ≠ coNP ⟹ P ≠ NP
+- `ne_of_np_not_subset` : for any class C with P ⊆ C, if some NP language escapes C
+  then P ≠ NP. This is the single shape shared by NP ⊄ P/poly, NP ⊄ P/O(n) and
+  NP ⊄ ACC⁰ — formalising it isolates the difficulty in the escapement hypothesis
+- `subset_of_P_eq_NP` : the contrapositive, P = NP ⟹ every class containing P
+  contains NP
 
 `PVNP/Audit.lean` prints the axiom dependencies. None is `sorryAx`.
