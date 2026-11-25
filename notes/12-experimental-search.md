@@ -57,6 +57,29 @@ word with θ = ⌊n/4⌋ has a non-trivial abelian square.
 arXiv identifiers in this document were resolved against the arXiv API. The
 witness was checked clause by clause by hand.
 
+**Adversarial check.** A separate process was given the counterexample and told to
+refute it. It upheld the claim, having confirmed from the source that
+
+- Conjecture 4 carries no `n ≥ 5` or "large n" qualifier;
+- "trivial" is defined exactly as above, and `abab` is neither a^{2i} nor b^{2i};
+- θ counts all abelian squares, trivial and non-trivial together, and for `abab`
+  the count is 1 whether taken over occurrences or distinct factors;
+- Table 1's caption reads "Length n words containing two a's and the least
+  possible number of distinct abelian squares", and its n = 4 row gives
+  `abab, baba`.
+
+The strongest corroboration is internal: the paper's Theorem 7 concerns exactly
+the two-a case and its M(2,4) computation agrees that `abab` has one abelian
+square, which is the non-trivial square `abab` itself. Three separate routes —
+the table, the theorem, and direct enumeration — all certify θ(`abab`) = 1.
+
+**How narrow the defect is.** Exhaustive enumeration of all binary words for
+n ≤ 12 shows n = 4 is the *only* failure, and `abab` and `baba` the only words
+that fail. The clause holds for 5 ≤ n ≤ 46. So the correction is a single missing
+hypothesis, and the statement was almost certainly intended as n ≥ 5. That is
+worth stating plainly: this is a precise, small, verifiable defect, not a crack in
+the paper's substance.
+
 **What this is and is not.** It is a genuine defect in an unrefereed preprint,
 found by exhaustive search and confirmed by the paper's own data. It is not a deep
 result and it does not affect the paper's main theorems. The honest description is
