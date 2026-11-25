@@ -70,6 +70,8 @@ notes/
   02-barriers.md         relativisation, natural proofs, algebrisation
   03-state-of-play.md    known lower bounds, what would count, why an LLM cannot settle it
   05-conjecture-implications.md  which conjectures would settle P vs NP, and which only look like they would
+  06-falsification-checklist.md  how to test a claimed proof, with the barrier statements
+  07-claim-audit.md      three claimed resolutions checked against the source artifacts
 lean/
   PVNP/Basic.lean        languages, PolyTime, MemP, MemNP, Reduces, NP-hard/complete
   PVNP/Arith.lean        the length arithmetic behind closure of NP under reduction
