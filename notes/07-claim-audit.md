@@ -130,6 +130,59 @@ is never engaged — it is bypassed by asserting a uniform separation directly.
 Xu–Zhou additionally exhibits uniformity confusion: a uniform lower bound
 contradicted by a non-uniform algorithm.
 
+## Case 4 — assessing a proof-graph project rather than a single claim
+
+`github.com/open-goat/pequalnp-proofs` is not a claimed resolution, so the
+checklist applies to it differently. It is infrastructure, and it is the most
+carefully built thing examined here.
+
+**What it is.** A Lean 4 project with a pinned toolchain and pinned Mathlib, plus
+a "desk" that hands out *gaps*: one Lean statement each, one file each, one pull
+request each. As of late November 2026 it had ~22,000 pull requests, ~350 open,
+with titles like `L-meta-10650` and `Reduce L-meta-6927 by the presence of an AND
+gate`. Definitions live in `PEqualNP/Defs/`, about eighty modules covering
+circuits, proof complexity, meta-complexity, oracles and GCT.
+
+**What is genuinely good, and better than most human projects.**
+
+- **Anti-cheat file rules.** Submitted files may not run code during compilation:
+  no `initialize`, no `#eval`, no macros, no `native_decide`, no string literals,
+  and only a whitelist of options and attributes. This closes the obvious route
+  for a proof file to subvert its own checking.
+- **Statement fidelity is closed per lemma.** The authoritative check is run from
+  the base branch, which *reads the statement from the desk's public list* and
+  verifies the submitted file proves exactly that statement under the expected
+  name. This is precisely the gap that the Anthropic VP ≠ VNP repository flagged
+  about itself — "no machine checks that this file says what is claimed" — and
+  here it is engineered away, one lemma at a time.
+- **The definitions are documented the way definitions should be.** Where the
+  prose admitted more than one reading, `Defs/Core.lean` records which reading
+  was chosen, why, and what the alternative would have changed. That is unusually
+  good practice.
+
+**What it does not establish, and the authors say so.** `README.md`: "No statement
+here says that P versus NP is settled." The project is honest about this and the
+phrase "checked" is defined narrowly, with an explicit instruction not to use any
+other word for a proof.
+
+**The remaining question is graph soundness, and it is not machine-checked.**
+Lean verifies each tile. Nothing verifies the mosaic: whether the set of gap
+statements, if all proved, *implies* P ≠ NP. That is a question about the design
+of the lemma graph, which lives in prose and in the desk's choice of statements,
+not in Lean. A board of individually true lemmas that do not compose is worth
+nothing for the problem, and the checking machinery cannot tell the difference.
+
+So the right way to evaluate this project is not "are the lemmas proved" — they
+are — but: **is there a root statement `P ≠ NP`, and is every edge from it to the
+leaves a checked implication?** If there were, it would be the largest result in
+fifty years and it would be impossible to miss. The project's own disclaimer
+implies the top of the graph still has open gaps.
+
+This is the same distinction as everywhere else in this file, one level up. For a
+single proof, the question is whether Lean checked the statement you meant. For a
+proof graph, it is whether the graph means the theorem you want. Neither question
+is answered by a green check on a file.
+
 **Two facts worth keeping.** Exactly one of these reached a peer-reviewed venue
 (Xu–Zhou, *Frontiers of Computer Science* 2025), and it is wrong, with a formal
 rebuttal on record. And **no** claimed P vs NP resolution has a complete Lean or
