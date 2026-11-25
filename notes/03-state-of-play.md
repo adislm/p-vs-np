@@ -6,8 +6,11 @@
 - Nondeterministic time hierarchy: NP ⊊ NEXP. Deterministic: P ⊊ EXP.
 - Ladner (1975): if P ≠ NP there are NP-intermediate languages — neither in P
   nor NP-complete.
-- Mahaney (1982): if P ≠ NP, no NP-complete language is sparse. Equivalently,
-  no NP-complete language has polynomial-size circuits unless P = NP.
+- Mahaney (1982): if P ≠ NP, no NP-complete language is sparse, under many-one
+  reductions. This is *not* equivalent to the circuit statement: sparse sets are
+  a strict subclass of P/poly, so "no NP-complete language has polynomial-size
+  circuits unless P = NP" is strictly stronger and is open (see
+  `notes/05-conjecture-implications.md`).
 - Karp–Lipton (1980): NP ⊆ P/poly implies PH = Σ₂. So a non-uniform algorithm
   for SAT collapses the polynomial hierarchy two levels.
 - If P = NP then PH = P; the whole hierarchy collapses.
