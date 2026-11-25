@@ -72,6 +72,7 @@ notes/
   05-conjecture-implications.md  which conjectures would settle P vs NP, and which only look like they would
   06-falsification-checklist.md  how to test a claimed proof, with the barrier statements
   07-claim-audit.md      three claimed resolutions checked against the source artifacts
+  08-candidate-conjectures.md  an experiment: generate middle conjectures, try to kill them
 lean/
   PVNP/Basic.lean        languages, PolyTime, MemP, MemNP, Reduces, NP-hard/complete
   PVNP/Arith.lean        the length arithmetic behind closure of NP under reduction
