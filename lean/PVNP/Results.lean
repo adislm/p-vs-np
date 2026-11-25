@@ -132,5 +132,62 @@ theorem exists_separator_of_ne (M : Model)
       | Or.inl hP => hP
       | Or.inr hP => absurd ⟨L, hNP, hP⟩ hex⟩
 
+/-- `MemP` respects logical equivalence of languages. -/
+theorem memP_congr (M : Model) {L₁ L₂ : Language}
+    (h : ∀ s : BinStr, L₁ s ↔ L₂ s) (hP : M.MemP L₁) : M.MemP L₂ := by
+  obtain ⟨V, hPT, hdec⟩ := hP
+  exact ⟨V, hPT, fun s => (hdec s).trans (h s)⟩
+
+/-- P is closed under complement. -/
+theorem memP_compl (M : Model) {L : Language} (h : M.MemP L) :
+    M.MemP (fun s => ¬ L s) := by
+  obtain ⟨V, hPT, hdec⟩ := h
+  refine ⟨fun s w => Bool.not (V s w), M.pt_not hPT, ?_⟩
+  intro s
+  rw [not_eq_true_iff, hdec s]
+
+/-- P is closed under intersection. -/
+theorem memP_inter (M : Model) {L₁ L₂ : Language}
+    (h₁ : M.MemP L₁) (h₂ : M.MemP L₂) : M.MemP (fun s => L₁ s ∧ L₂ s) := by
+  obtain ⟨V₁, hP₁, hd₁⟩ := h₁
+  obtain ⟨V₂, hP₂, hd₂⟩ := h₂
+  refine ⟨fun s w => V₁ s w && V₂ s w, M.pt_and hP₁ hP₂, ?_⟩
+  intro s
+  rw [Bool.and_eq_true]
+  exact ⟨fun ⟨a, b⟩ => ⟨(hd₁ s).1 a, (hd₂ s).1 b⟩,
+    fun ⟨a, b⟩ => ⟨(hd₁ s).2 a, (hd₂ s).2 b⟩⟩
+
+/-- P is closed under union. -/
+theorem memP_union (M : Model) {L₁ L₂ : Language}
+    (h₁ : M.MemP L₁) (h₂ : M.MemP L₂) : M.MemP (fun s => L₁ s ∨ L₂ s) := by
+  obtain ⟨V₁, hP₁, hd₁⟩ := h₁
+  obtain ⟨V₂, hP₂, hd₂⟩ := h₂
+  refine ⟨fun s w => V₁ s w || V₂ s w, M.pt_or hP₁ hP₂, ?_⟩
+  intro s
+  rw [Bool.or_eq_true]
+  exact ⟨fun h => h.elim (fun a => Or.inl ((hd₁ s).1 a)) (fun b => Or.inr ((hd₂ s).1 b)),
+    fun h => h.elim (fun a => Or.inl ((hd₁ s).2 a)) (fun b => Or.inr ((hd₂ s).2 b))⟩
+
+/-- If P = NP then NP is closed under complement, i.e. NP = coNP. -/
+theorem np_eq_conp_of_P_eq_NP (M : Model)
+    (h : ∀ L : Language, M.MemP L ↔ M.MemNP L) (L : Language) :
+    M.MemNP (fun s => ¬ L s) ↔ M.MemNP L := by
+  constructor
+  · intro hc
+    have hP : M.MemP (fun s => ¬ L s) := (h _).2 hc
+    have hP' : M.MemP (fun s => ¬ ¬ L s) := M.memP_compl hP
+    exact (h L).1 (M.memP_congr
+      (fun s => ⟨fun hnn => Classical.byContradiction hnn, fun hs hnn => hnn hs⟩) hP')
+  · intro hNP
+    exact (h _).1 (M.memP_compl ((h L).2 hNP))
+
+/-- The contrapositive, which is the usable form: a proof that NP ≠ coNP would
+settle P ≠ NP. -/
+theorem ne_of_conp_ne (M : Model)
+    (h : ¬ ∀ L : Language, M.MemNP L ↔ M.MemNP (fun s => ¬ L s)) :
+    ¬ ∀ L : Language, M.MemP L ↔ M.MemNP L := by
+  intro hP
+  exact h fun L => (M.np_eq_conp_of_P_eq_NP hP L).symm
+
 end Model
 end PVNP

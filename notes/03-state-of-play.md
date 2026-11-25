@@ -79,16 +79,64 @@ What a language model can do, and what this repository is:
   reference.
 - Catch the specific error classes above in a proposed proof.
 
-## On the linked repository
+## Anthropic's VP ≠ VNP (November 2026)
 
-`1337isnot1337/solved-conjectures` lists roughly a hundred problems with Lean
-status icons, and imports "Anthropic's VP ≠ VNP theorem" as a standing
-assumption while stating it does not establish it. VP vs VNP is itself open —
-it is the algebraic analogue of P vs NP and is not known in either direction.
-A repository that assumes an open separation as an axiom has not proved
-anything conditional on that axiom that bears on the open problem.
+An earlier revision of this file said "VP vs VNP is open". As of 2026-11-23
+that needs qualification.
 
-The status icons distinguish "Lean-verified" from "no Lean verification", which
-is a good practice. It is not a substitute for peer review, and the repository
-says so. Treat it as an interesting source of problems and formalisation
-scaffolding, not as a source of results.
+`github.com/anthropics/formal-math`, folder `vp-vnp`, holds *VP ≠ VNP over every
+field*. The claim, as the folder's README states it:
+
+- for every field, circuits computing the Hamiltonian cycle polynomial, and the
+  permanent outside characteristic 2, require more than m^(c·(log m)^(1/3))
+  gates for all large m;
+- the same bound holds for approximating (border) circuits;
+- hence VP ⊊ VNP, and VNP is not contained in the closure of VP.
+
+What the source says about its own status: the result was found by an internal
+research Claude model; the paper and the Lean 4 formalisation were both written
+by AI models; **no human mathematician has checked the proof**; and
+
+> Lean checks the proofs, but no machine checks that this file says what is
+> claimed.
+
+That caveat is the standard one for any large formalisation and is not specific
+to this work: a proof assistant verifies inference, not the fidelity of the
+formal statement to the intended theorem. What it removes is still worth a
+great deal — gaps, hand-waving and "clearly" are exactly the failure modes that
+kill sixty-page arguments. What remains possible is a formalised statement that
+is weaker than, or different from, the prose claim. The repository mitigates
+this by separating `Statement.lean` from the proofs and by re-checking with a
+second, independently written kernel (nanoda) through its CI.
+
+Verification, from that folder:
+
+    lake exe cache get
+    lake build
+    lake env lean scripts/PrintAxioms.lean
+
+with no axiom expected other than `propext`, `Classical.choice`, `Quot.sound`.
+
+### What it does not do
+
+- **It does not settle P vs NP.** Algebraic circuits are not Boolean circuits.
+  VP ≠ VNP states nothing directly about P vs NP, and the source says so
+  explicitly.
+- **Nothing in it transfers to a Boolean development.** Different objects
+  (algebraic circuit families, the permanent, the Hamiltonian cycle polynomial),
+  a different barrier regime (the argument runs through Strassen's asymptotic
+  spectrum, not relativisation or natural proofs), and the formalisation is
+  built on Mathlib whereas this repository is dependency-free.
+
+## On the other linked repository
+
+`solved-conjectures` lists roughly a hundred problems with Lean status icons,
+and imports "Anthropic's VP ≠ VNP theorem" as a standing axiom while stating
+that it does not establish it. Given the above, that premise is not baseless —
+but an imported unreviewed result is unreviewed at one remove, and the import
+does not make the repository's own entries verified.
+
+The status icons distinguishing "Lean-verified" from "no Lean verification" are
+good practice, and the repository is candid that this is not peer review. Treat
+it as a source of problems and formalisation scaffolding, not as a source of
+results.

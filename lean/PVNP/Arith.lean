@@ -31,4 +31,7 @@ theorem pow_add_two_add_two_le {n c : Nat} (hc : 1 ≤ c) :
   rw [hsq]
   exact add_two_le_mul_self h2
 
+theorem not_eq_true_iff {b : Bool} : (Bool.not b = true) ↔ ¬ (b = true) := by
+  cases b <;> simp
+
 end PVNP

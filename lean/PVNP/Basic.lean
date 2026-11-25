@@ -57,6 +57,10 @@ structure Model where
   pt_precomp : ∀ {f : Transducer} {V : Pred}, PTMap f → PT V → PT (fun s w => V (f s) w)
   /-- Polynomial time is closed under conjunction of tests. -/
   pt_and : ∀ {V W : Pred}, PT V → PT W → PT (fun s w => V s w && W s w)
+  /-- Polynomial time is closed under disjunction of tests. -/
+  pt_or : ∀ {V W : Pred}, PT V → PT W → PT (fun s w => V s w || W s w)
+  /-- Polynomial time is closed under negation. -/
+  pt_not : ∀ {V : Pred}, PT V → PT (fun s w => Bool.not (V s w))
   /-- Deciding a fixed polynomial bound on witness length is polynomial time. -/
   pt_lengthTest : ∀ k : Nat, PT (fun x w => decide (w.length ≤ (x.length + 2) ^ k))
 
@@ -71,6 +75,9 @@ polynomially bounded witnesses. -/
 def MemNP (M : Model) (L : Language) : Prop :=
   ∃ (V : Pred) (k : Nat), M.PT V ∧
     ∀ s : BinStr, L s ↔ ∃ w : BinStr, w.length ≤ (s.length + 2) ^ k ∧ V s w = true
+
+/-- coNP: `L` is in coNP when its complement is in NP. -/
+def CoNP (M : Model) (L : Language) : Prop := M.MemNP (fun s => ¬ L s)
 
 /-- Polynomial-time many-one reducibility. The growth exponent is recorded
 explicitly because the closure of NP under reduction needs it. -/

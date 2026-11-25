@@ -15,6 +15,9 @@ out the obvious lines of attack.
 | NP closed under ≤p | proved in Lean, conditional on `Model` |
 | ≤p is a preorder | proved in Lean |
 | NP-hard ∩ P ≠ ∅ ⟹ P = NP | proved in Lean |
+| P closed under complement, ∪, ∩ | proved in Lean |
+| P = NP ⟹ NP = coNP | proved in Lean |
+| NP ≠ coNP ⟹ P ≠ NP | proved in Lean |
 | P ≠ NP | **open** |
 
 The `Model` parameter is a bundle of standard facts about polynomial time.
@@ -51,6 +54,12 @@ Current output:
 'PVNP.Model.memNP_subset_memP_of_hard_in_P' depends on axioms: [propext]
 'PVNP.Model.eq_of_complete_in_P' depends on axioms: [propext]
 'PVNP.Model.exists_separator_of_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVNP.Model.memP_congr' does not depend on any axioms
+'PVNP.Model.memP_compl' depends on axioms: [propext]
+'PVNP.Model.memP_inter' depends on axioms: [propext]
+'PVNP.Model.memP_union' depends on axioms: [propext]
+'PVNP.Model.np_eq_conp_of_P_eq_NP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PVNP.Model.ne_of_conp_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 ## Layout
@@ -79,5 +88,8 @@ lean/
   previous one.
 - The best explicit general-circuit lower bound is linear in the input size.
   P ≠ NP needs superpolynomial. The gap between the two is the problem.
+- The *algebraic* analogue, VP vs VNP, was claimed settled on 2026-11-23
+  (Anthropic, Lean-formalised, no human referee, and explicitly not a result
+  about P vs NP). See `notes/03-state-of-play.md`.
 
 See `notes/` for statements and proof sketches.

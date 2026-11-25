@@ -84,5 +84,9 @@ All conditional on `Model`, all without `sorry`:
 - `memNP_subset_memP_of_hard_in_P` : NP-hard ∩ P ≠ ∅ ⟹ NP ⊆ P
 - `eq_of_complete_in_P` : NP-complete ∩ P ≠ ∅ ⟹ P = NP
 - `exists_separator_of_ne` : P ≠ NP ⟹ ∃L ∈ NP \ P
+- `memP_compl`, `memP_inter`, `memP_union` : P is closed under complement,
+  intersection and union
+- `np_eq_conp_of_P_eq_NP` : P = NP ⟹ NP = coNP
+- `ne_of_conp_ne` : NP ≠ coNP ⟹ P ≠ NP
 
 `PVNP/Audit.lean` prints the axiom dependencies. None is `sorryAx`.

@@ -18,3 +18,9 @@ import PVNP
 #print axioms PVNP.Model.memNP_subset_memP_of_hard_in_P
 #print axioms PVNP.Model.eq_of_complete_in_P
 #print axioms PVNP.Model.exists_separator_of_ne
+#print axioms PVNP.Model.memP_congr
+#print axioms PVNP.Model.memP_compl
+#print axioms PVNP.Model.memP_inter
+#print axioms PVNP.Model.memP_union
+#print axioms PVNP.Model.np_eq_conp_of_P_eq_NP
+#print axioms PVNP.Model.ne_of_conp_ne
