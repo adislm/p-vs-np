@@ -1,0 +1,8 @@
+unit tests passed (K2 non-antimagic; P3,C3,K3,K1,3,C4 antimagic)
+n=2: connected graphs checked=1, non-antimagic=1, time=0.00s
+   NON-ANTIMAGIC: [(0, 1)]
+n=3: connected graphs checked=4, non-antimagic=0, time=0.00s
+n=4: connected graphs checked=38, non-antimagic=0, time=0.00s
+n=5: connected graphs checked=728, non-antimagic=0, time=0.01s
+n=6: connected graphs checked=26704, non-antimagic=0, time=0.28s
+n=7: connected graphs checked=1866256, non-antimagic=0, time=24.02s
