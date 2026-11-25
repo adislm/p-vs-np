@@ -2,3 +2,6 @@ lean/.lake/
 *.olean
 *.ilean
 .DS_Store
+
+# agent scratch space
+work/
