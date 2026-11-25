@@ -74,6 +74,7 @@ notes/
   07-claim-audit.md      three claimed resolutions checked against the source artifacts
   08-candidate-conjectures.md  an experiment: generate middle conjectures, try to kill them
   09-cross-field.md      the transfer filter, and six adjacent fields under survey
+  10-2026-record.md      verified snapshot of what moved in 2026
 lean/
   PVNP/Basic.lean        languages, PolyTime, MemP, MemNP, Reduces, NP-hard/complete
   PVNP/Arith.lean        the length arithmetic behind closure of NP under reduction
