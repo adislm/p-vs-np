@@ -198,3 +198,89 @@ The nearest thing to a genuine rung is W[1] ≠ FPT, because it is algorithmic
 rather than circuit-theoretic and so escapes the formal statement of natural
 proofs. It is still KNOWN, still strictly above P ≠ NP, and has never been
 attacked unconditionally.
+
+## 4. Circuit complexity
+
+### Lemma (no size-class stepping stone)
+
+Let D = SIZE[g]. For "NP ⊄ D" to imply P ≠ NP we need P ⊆ D, since otherwise
+escaping D says nothing about NP versus P.
+
+- **Fixed degree**, g(n) = n^k. Then `P ⊆ SIZE[n^k]` is not known and is believed
+  false: a language in DTIME(n^{k+1}) is only known to have circuits of size about
+  n^{k+1}, and nothing rules out size-n^k circuits for it. So NP ⊄ SIZE[n^k] is a
+  genuine weakening of NP ⊄ P/poly and is logically inert.
+- **Super-polynomial g.** Then P/poly ⊆ SIZE[g], so NP ⊄ SIZE[g] is *stronger*
+  than NP ⊄ P/poly. It implies P ≠ NP by overshooting, not by stepping.
+
+Hence no circuit **size** class yields a statement strictly between
+NP ⊄ P/poly and P ≠ NP. An intermediate, if one exists, must come from a
+non-size class D with P ⊆ D ⊆ P/poly (advice-restricted), or from a different
+logical form entirely.
+
+### Candidates
+
+| Candidate | Implies P ≠ NP? | Status |
+| --- | --- | --- |
+| Σ₂ᵖ ⊄ P/poly | yes — if P = NP then PH = P, so Σ₂ᵖ = P ⊆ P/poly | KNOWN (standard weakening) |
+| MA ⊄ P/poly | yes — MA ⊆ Π₂ᵖ | KNOWN, novelty uncertain |
+| NP ⊄ P/O(n) | yes — P ⊆ P/O(n) directly, without a size bound | **VIABLE**, weakly |
+| NP ⊄ ACC⁰ | **no** — ACC⁰ ⊆ P, so this is consistent with P = NP | FALSE as an intermediate |
+| NP ⊄ SIZE[n^k], k fixed | **no** — requires P ⊆ SIZE[n^k], unproven | FALSE as an intermediate |
+
+**Why Σ₂ᵖ and MA are legitimate but not easier.** Both are implied by NP ⊄ P/poly
+and both imply P ≠ NP, so they sit strictly in between. Neither is closer. Both
+are false relative to a PSPACE oracle, so neither has a relativising proof; both
+resist natural proofs, which bar the combinatorial route; and the one tool that
+does apply, Kannan-style diagonalisation, relativises and is therefore capped at
+per-k SIZE[n^k] bounds, never reaching the union P/poly. The per-k wall looks
+structural: an unbounded degree in the circuit size is exactly what a
+polynomial-time machine cannot diagonalise against.
+
+**The one weak survivor.** NP ⊄ P/O(n) is the sole candidate that passes every
+logical gate without being a known problem. It dodges the size-class lemma
+because P ⊆ P/O(n) holds by advice-free computation, not by a circuit-size bound.
+Its viability is bare: whether P/O(n) is strictly inside P/poly, and whether
+NP ⊄ P/O(n) is genuinely weaker than NP ⊄ P/poly rather than equivalent to it,
+are both unproven. Advice-compression could collapse the distinction. Weak
+viability, not enthusiasm.
+
+**Two tempting programmes that are logically disconnected.** Scaling Williams'
+method from NEXP down to NP does not work: ACC⁰ ⊆ P, so NP ⊄ ACC⁰ holds in a
+world where P = NP. And pushing explicit general-circuit lower bounds past the
+current linear frontier does not work either, by the size-class lemma. Both are
+real research programmes, and neither is a weaker version of the target — they
+are not versions of it at all.
+
+## Conclusion: the middle is empty, and that is a theorem, not a gap
+
+Four families, roughly twenty candidates, two structural lemmas. The result:
+
+**Zero new conjectures that are both correct in direction and demonstrably
+easier than P ≠ NP.** The survivors are hardness magnification (a known
+programme, and only reaching NP ⊄ P/poly), the GCT multiplicity conjecture (a
+known programme, reaching only VP ≠ VNP and provably unable to reach P vs NP),
+and NP ⊄ P/O(n) (barely viable, possibly equivalent to the target).
+
+The two lemmas say why, and they are the real output of the experiment:
+
+1. **No free lunch.** A statement implying P ≠ NP cannot be strictly weaker
+   than it. The search for "a weaker condition that would suffice" is a search
+   for a logical impossibility. Any legitimate middle conjecture is a
+   *strengthening*, and the question is only whether the route through it is
+   more tractable.
+2. **No size-class stepping stone.** The natural strengthenings — fixed-degree
+   circuit lower bounds — are inert, because P ⊆ SIZE[n^k] is not known and is
+   believed false. The ones that do work already dominate P/poly and are harder
+   than the target.
+
+Put together: the space between known theorems and P ≠ NP is not unexplored
+territory waiting for a clever conjecture. It is constrained by logic on one side
+and by the structure of circuit-size classes on the other. What would genuinely
+be new is not a *weaker* statement but a *strengthening whose proof is
+tractable* — which is exactly what ETH, NP ≠ coNP and NP ⊄ P/poly already are,
+and finding a new one that is easier to prove is the research problem itself, not
+a bookkeeping exercise.
+
+That is the honest result of the experiment. It is worth more than a folder of
+plausible-sounding conjectures, because it tells you which doors are doors.
