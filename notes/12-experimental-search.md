@@ -74,11 +74,11 @@ square, which is the non-trivial square `abab` itself. Three separate routes —
 the table, the theorem, and direct enumeration — all certify θ(`abab`) = 1.
 
 **How narrow the defect is.** Exhaustive enumeration of all binary words for
-n ≤ 12 shows n = 4 is the *only* failure, and `abab` and `baba` the only words
-that fail. The clause holds for 5 ≤ n ≤ 46. So the correction is a single missing
-hypothesis, and the statement was almost certainly intended as n ≥ 5. That is
-worth stating plainly: this is a precise, small, verifiable defect, not a crack in
-the paper's substance.
+n ≤ 16 — independently re-run during this audit with a separately written
+program — shows n = 4 is the *only* failure, with exactly two words failing,
+`abab` and `baba`. So the correction is a single missing hypothesis, and the
+statement was almost certainly intended as n ≥ 5. That is worth stating plainly:
+this is a precise, small, verifiable defect, not a crack in the paper's substance.
 
 **What this is and is not.** It is a genuine defect in an unrefereed preprint,
 found by exhaustive search and confirmed by the paper's own data. It is not a deep
