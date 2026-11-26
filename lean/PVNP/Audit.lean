@@ -26,3 +26,9 @@ import PVNP
 #print axioms PVNP.Model.ne_of_conp_ne
 #print axioms PVNP.Model.ne_of_np_not_subset
 #print axioms PVNP.Model.subset_of_P_eq_NP
+
+-- abelian squares (correction to arXiv:2604.23188)
+#print axioms PVNP.countA_append
+#print axioms PVNP.not_isAbelianSquare_of_countA_one
+#print axioms PVNP.countA_bab
+#print axioms PVNP.isAbelianSquare_factor_of_bab_is_all_b

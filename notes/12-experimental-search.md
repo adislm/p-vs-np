@@ -160,6 +160,13 @@ The lemma and the resulting block were also checked by brute force for every n
 below 60, with no mismatch — a check on the proof's arithmetic, not a substitute
 for it.
 
+**The lemma is machine-checked.** `lean/PVNP/AbelianSquares.lean` proves, with no
+`sorry`, that a word with exactly one `a` is never an abelian square
+(`not_isAbelianSquare_of_countA_one`), and hence that every abelian-square factor
+of `b^i a b^j` consists entirely of `b`s
+(`isAbelianSquare_factor_of_bab_is_all_b`). The axiom audit reports only
+`propext` and `Quot.sound`.
+
 ## 1. OEIS conjectures
 
 Four conjectures attached to OEIS entries, all still standing over the ranges
