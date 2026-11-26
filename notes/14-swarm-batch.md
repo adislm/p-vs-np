@@ -396,6 +396,30 @@ Smallest witness: m = 1, n = 14, k = 2 (r = 4, s = 6) gives A = 8, and
 An erratum rather than a refutation — the theorem's own remainder hypothesis is
 correct and its conclusion holds — but the proof as written does not establish it.
 
+## The twentieth: verification bounds (arXiv:2508.01686, 2507.00059, 2610.10095)
+
+These three are papers whose contribution *is* a computational verification, so the
+audit is reproduction. Two reproduce exactly; the third overstates its scope.
+
+**arXiv:2508.01686 (Stricker), prime powers as summands.** Claimed sweep to `10^7`.
+Independent bitset sweep reproduces every stated count and extends to `10^8`: every
+`n ∈ [24, 10^8]` is a sum of at most five prime powers, with 23 the largest
+exception. The threshold is exact, not off by one. Clean.
+
+**arXiv:2610.10095 (Lesmana–Tjugiarto), "making numbers".** All 22 tabulated
+sequences re-simulated: correct arithmetic, one new number per move, exactly `N−1`
+moves. Extended to every `N ∈ [34, 50]`, each attaining the `N−1` bound. Threshold
+exact: none exists for `N ≤ 8`, first at `N = 9`. Clean.
+
+**arXiv:2507.00059 (Naik), frequency-partition fingerprints.** Counts reproduce
+(5,096 and 1,763; the divisor bound is inclusive). But the verification claim
+overstates its scope: a *fingerprint* fixes multiplicities only, and the paper tests
+one multiset per fingerprint — 5,096 of `C(44,14) = 114,955,808,528` for `p = 31`.
+The paper's own phrasing concedes this ("considers one multiset per frequency
+partition"). Internally inconsistent too: `p = 16` uses all multisets while `p = 31`
+uses fingerprints, and the quoted `78,378,960,360` is exactly `C(43,14)`, the
+unfiltered total rather than a verified count. A scope claim, not a false theorem.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
@@ -404,4 +428,6 @@ auditing finds real things at a low but nonzero rate, and the findings cluster a
 small parameters and in displayed intermediate steps, not in the proofs' substance.
 
 That is worth stating plainly against the temptation to report a swarm as
-productive because it produced volume.
+productive because it produced volume. It is also the reason note 15 changes target:
+defects are common in this literature precisely because nobody has checked it, and
+that is a statement about the literature, not about the defects' importance.
