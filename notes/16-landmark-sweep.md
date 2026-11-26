@@ -125,6 +125,101 @@ Sample certificates, verified as exact integer identities:
 **This is eight orders of magnitude below the record and is not progress.** It is a
 sanity re-verification of the reduction plus a fresh run. Filed as such.
 
+## Ramsey numbers — and an error of mine corrected
+
+**Correction.** When setting this sweep up I asserted `R(3,10) = 40` as a proved
+value. That is false. The current state is
+
+    40 ≤ R(3,10) ≤ 41,
+
+lower bound Exoo (1989), upper bound Angeltveit, *R(3,10) ≤ 41*, EJC 32(4) P4.30
+(2025), arXiv:2401.00392 — improved from 42 via a search over roughly 150 billion
+`R(3,8)` graphs. The exact value is open, and `R(3,10) = 40` is equivalent to the
+non-existence of a triangle-free 40-vertex graph with independence number ≤ 9.
+`R(3,10)` and `R(4,6)` are the two smallest unknown classical Ramsey numbers. This
+is the second stale or wrong fact I brought into the sweep, after the Hadamard 668
+claim, and both were caught by checking rather than by memory.
+
+**Graphs constructed and independently verified here.** Three critical-graph
+witnesses, re-checked with my own code (bitset clique number on the graph and on its
+complement), not the agent's verifier:
+
+| witness | `n` | edges | `ω` | `α` | gives |
+|---|---|---|---|---|---|
+| `g45_24` | 24 | 120 (10-regular, circulant `Z₂₄`, ±{1,2,4,8,9}) | 3 | 4 | `R(4,5) ≥ 25` |
+| `g39_35` | 35 | 140 (8-regular, circulant `Z₃₅`, ±{1,7,11,16}) | 2 | 8 | `R(3,9) ≥ 36` |
+| `g310_39_sat` | 39 | 167 (degrees 7–9, SAT-built) | 2 | 9 | `R(3,10) ≥ 40` |
+
+`ω < s` and `α < r` in every row, so each is a valid witness. The 24-vertex graph is
+Kalbfleisch's (1965); there are 352,366 critical graphs on 24 vertices. The 35-vertex
+graph hits the unique critical graph for `R(3,9)`. The 39-vertex witness is not
+isomorphic to Exoo's, and there are at least `43 × 10⁶` such graphs — so constructing
+one is not a result, only a check that our tools work.
+
+Exact equality needs the cited upper bounds (McKay–Radziszowski 1995, with a HOL4
+formalisation; Grinstead–Roberts 1982). **No new Ramsey number is claimed.**
+
+## Lonely runner — and a citation of mine corrected
+
+**Correction.** I attributed the seven-runner case to Baranwal et al. (2024). That
+attribution does not survive a search; the seven-runner proof is **Barajas–Serra,
+EJC 15 (2008) R48**. The chain in the `N`-runner form: `N ≤ 3` elementary,
+`N = 4` Betke–Wills 1972, `N = 5` Cusick–Pomerance 1984, `N = 6` Bohman–Holzman–
+Kleitman 2001, `N = 7` Barajas–Serra 2008, `N = 8`–`9` Rosenfeld / Trakulthongchai
+(2025), `N = 10` Trakulthongchai (EJC 2026), `N = 11`–`13` Sungkawichai–
+Trakulthongchai (arXiv:2604.23906). Claims to `N = 14`–`16` exist but are arXiv or
+Zenodo only and not fully audited, so they are not counted as settled here.
+
+**What was computed.** Exact integer arithmetic throughout; for `δ = 1/Q` the safe
+set is a finite union of closed intervals whose endpoints are crossings
+`‖v_i t‖ = δ`, so testing `t = (mQ ± 1)/(v_i Q)` is exhaustive within a speed box.
+Every distinct-speed tuple with speeds `≤ B` was enumerated for `(n,B) = (3,200)`,
+`(4,120)`, `(5,80)`, `(6,60)`, `(7,50)`, `(8,50)` — 720,394,896 tuples, zero
+violations. Each box constant came out exactly `1/(n+1)`, matching the theorems, and
+just above it the search flags exactly the known extremal tuples, which confirms
+tightness rather than testing a soft bound.
+
+**This is not progress on the conjecture.** It is a bounded verification, and the
+bounds are finite only because finite speed bounds exist (Tao 2018; Malikiosis–
+Santos–Schymura 2024) and those bounds are enormous. The `N ≥ 14` status is unsettled
+and this run says nothing about it.
+
+## Caccetta–Häggkvist
+
+**Two corrections to my framing.** I wrote that `r = 2` and `r = 3` are open. They are
+not. In the form "minimum outdegree `r` forces a directed cycle of length `≤ ⌈n/r⌉`":
+
+- `r = 1` trivial; `r ≥ n/2` trivial; tournaments trivial.
+- `r = 2` is Caccetta–Häggkvist (1978) themselves.
+- `r = 3` is Hamidoune (1987); `r = 4, 5` are Hoàng–Reed (1987).
+- `r ≤ √(n/2)` and `n ≥ 2r² − 3r + 1` is Shen (2000).
+
+What is open is the region `n/3 ≤ r < n/2` — equivalently the cycle-length-`k`
+formulation at `k = 3`: minimum outdegree `≥ n/3` forces a triangle. I also wrote the
+count of digraphs as `3^{n(n−1)}`, which is wrong twice over: all simple digraphs are
+`2^{n(n−1)}`, oriented ones `3^{C(n,2)}`.
+
+**Enumeration.** Sound reductions, each justified rather than assumed: a
+counterexample is oriented (a digon is already short); deleting arcs while an
+outdegree exceeds `r` leaves a spanning subgraph with every outdegree exactly `r` and
+creates no new cycles; so exact-`r` digraphs suffice. DFS over exact-`r`
+out-neighbourhoods with a sound pruning rule — close a short cycle and every
+completion contains it.
+
+| `r` | `n = 7` (full, unpruned) | `n = 8` | `n = 9` | counterexamples |
+|---|---|---|---|---|
+| 2 | 170,859,375 | 3.8×10¹⁰ | 1.06×10¹³ (mod relabelling) | 0 |
+| 3 | 1.28×10⁹ | 2.25×10¹² | 5.4×10¹⁵ (mod relabelling) | 0 |
+
+The maximum girth came out exactly `⌈n/r⌉` in every case — the search proves `≤` and
+the circulant `C_n(1..r)` attains it — so the bound is tight, which is a check on the
+implementation and not a new fact.
+
+**Scope.** Full unpruned enumeration for `r = 2, 3` through `n = 7`; sound exhaustive
+certification through `n = 9`. The open frontier starts near `n = 18`, `δ⁺ = 6`
+(combining `r ≤ 5` with the 0.3465 triangle threshold), so this is nowhere near it.
+No counterexample, and none expected.
+
 ## Method notes
 
 Two of the three outcomes above are "the method does not reach". That is the normal
