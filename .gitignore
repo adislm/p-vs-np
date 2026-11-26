@@ -44,6 +44,12 @@ ramsey_verify/
 rota_basis/
 schur/
 eg_check.c
+eg_check
+eg_verify.py
+testgraphs.g6
+n11_result.txt
+cubic20.txt
+run_par.sh
 r39.html
 
 # virtualenvs created by agent runs
