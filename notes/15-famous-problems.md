@@ -54,8 +54,10 @@ Grouped by what a search can actually produce.
 
 ### A. Exact numbers with open values
 
-- **Ramsey numbers.** `43 ≤ R(5,5) ≤ 48`, open in this window since 1989/1995. A lower
-  bound is a graph certificate; the upper bound is out of reach.
+- **Ramsey numbers.** `43 ≤ R(5,5) ≤ 46` (upper bound Angeltveit–McKay 2026; the
+  common "48" is the 2018 bound and is stale), and `40 ≤ R(3,10) ≤ 41` — the latter is
+  **not** proved equal to 40. A lower bound is a graph certificate; the upper bound is
+  out of reach.
 - **Schur numbers.** `S(5) = 160` known; `S(6)` open. Lower bound = a colouring,
   upper bound = exhaustive search.
 - **van der Waerden numbers.** `W(2,6) = 1132`, `W(3,5) ∈ [1008, 1127]`. Small open

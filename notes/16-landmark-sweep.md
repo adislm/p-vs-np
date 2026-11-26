@@ -255,6 +255,42 @@ published bound is 40; `n = 12` alone has 113,373,005,661 such graphs, so this r
 reaches a small fraction of what is already known. It validates the pipeline and adds
 no coverage.
 
+## Ramsey `R(5,5)` — a third stale fact of mine
+
+**Correction.** I gave the range as `43 ≤ R(5,5) ≤ 48`. The upper bound has moved
+twice since that number: Angeltveit–McKay improved 49 → 48 (J. Graph Theory 89(1),
+2018) and then 48 → **46** (arXiv:2409.15709; J. Graph Theory 112(3):198–208, 2026,
+DOI 10.1002/jgt.70029), by linear programming plus a case analysis whose replication
+reportedly cost ~50 CPU-years. The standing range is
+
+    43 ≤ R(5,5) ≤ 46.
+
+That is the third fact in this sweep that was simply out of date when I asserted it,
+after Hadamard 668 and `R(3,10) = 40`.
+
+**Certificate verified here.** Record 0 of McKay's archive `r55_42some.g6` — 328
+explicit `(5,5;42)` graphs, the other 328 being their complements. I decoded the edge
+list and checked it with my own bitset clique code, independent of the agent's three
+verifiers:
+
+| `n` | edges | degrees | `ω` | `α` |
+|---|---|---|---|---|
+| 42 | 425 | 19–22 | 4 | 4 |
+
+`ω = 4 < 5` and `α = 4 < 5`, so this is a genuine `(5,5)`-graph on 42 vertices and
+`R(5,5) ≥ 43`. The graph has trivial automorphism group.
+
+**Structural work, which is not a bound.** Extending a `(5,5;n)`-graph to `n+1` is
+equivalent to choosing a neighbourhood `N(v)` that is `K₄`-free with `V∖N(v)` free of
+independent 4-sets; that encoding was validated on controls where the answer is known.
+All 328 archive graphs — hence all 656 up to complementation — are non-extendable to
+43, with four independent SAT solvers agreeing. **This does not prove `R(5,5) ≤ 43`**,
+because other 42-vertex graphs are not excluded.
+
+No circulant `C_N(S)` for `N = 42…48` witnesses the property either. SAT at `n = 43`
+(903 variables, 1.93×10⁶ clauses) timed out at 17 min, and timeouts prove nothing.
+**The range is unchanged by this work.**
+
 ## Method notes
 
 Two of the three outcomes above are "the method does not reach". That is the normal
