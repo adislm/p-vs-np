@@ -76,6 +76,55 @@ more random sampling. That is the honest limit of this result.
 
 ---
 
+## Hadamard matrices — a correction to this repo's own notes
+
+Note 15 originally repeated the standard line that 668 is the smallest undecided
+order. **That is out of date**, and the correction is verified three ways:
+
+1. **OEIS A007299** carries a comment (Bernard Schott, 12 Aug 2026) recording that
+   Alpöge with Philippe Voinov, Saul Reynolds-Haertle and Claude found Hadamard
+   matrices at all twelve multiples of 4 below 2000 previously without known
+   examples: 668, 716, 892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948, 1964.
+2. **The archive at `math74.com/Hadamard`** lists a construction and a PNG for every
+   covered order. I downloaded `Hadamard_0668.png` (668×668, two colours, 668²
+   pixels), decoded it, and checked `AAᵀ = 668·I` exactly over the integers with
+   entries in `{±1}`. Both colour orientations pass, as they must. The matrix is real.
+3. **The same archive** marks exactly four orders in `[2001,3000]` as
+   "no construction known": **2396, 2676, 2876, 2956**, and returns 404 for
+   `Hadamard_2396.png`. So the smallest open order is 2396, and 81 orders below
+   10,000 remain open.
+
+The 668 construction is `G(B(166,1))` — a Goethals-type construction on base
+sequences. This matters for what comes next: `2396 = 4·599` with `599` prime and
+`2395 = 5·479`, `1197 = 3²·7·19` not prime powers, so Paley and order-multiplication
+cannot reach it. Only a direct sequence search can.
+
+**This is the first thing in the sweep with real weight, and it is a correction to
+us, not a result.** I was repeating a fact that had been false for three months.
+
+## Erdős–Straus
+
+`4/n = 1/a + 1/b + 1/c`.
+
+**Record, corrected.** The `10^17` verification is Salez (arXiv:1406.6307, 2014), a
+single-machine modular sieve, not a distributed computation as commonly stated.
+A 2025 preprint (arXiv:2509.00128) claims `10^18`; wording does not settle whether
+that is primes or all `n`.
+
+**What was computed here: all `n ≤ 10^9`,** via Salez's elementary reduction (every
+`n` scales to `4/(kn)`, explicit decompositions cover `n` even and three residue
+classes, leaving only primes `p ≡ 1 (mod 24)`). That reduces the check to 6,354,932
+primes, each receiving an exact certificate, 0 failures, largest parameter 107.
+Cross-checked against an independent sieve.
+
+Sample certificates, verified as exact integer identities:
+
+    4/73        = 1/20 + 1/219 + 1/4380
+    4/999999937 = 1/249999985 + 1/83333323083334042 + 1/17640413385549453376349299111490
+
+**This is eight orders of magnitude below the record and is not progress.** It is a
+sanity re-verification of the reduction plus a fresh run. Filed as such.
+
 ## Method notes
 
 Two of the three outcomes above are "the method does not reach". That is the normal

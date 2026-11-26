@@ -78,9 +78,12 @@ for the orders covered and silence beyond. That silence must be stated, not hidd
 
 ### C. Existence statements
 
-- **Hadamard conjecture.** Smallest undecided order 668. A construction would be real;
-  but the standard constructions (Paley, Williamson, Turyn) plus order multiplication
-  cover almost everything, so the space for a new result is narrow.
+- **Hadamard conjecture.** Smallest undecided order is **2396 = 4·599**, not 668. The
+  twelve open multiples of 4 below 2000 were resolved in August 2026 (Alpöge, Voinov,
+  Reynolds-Haertle and an Anthropic model), and I verified the published 668 matrix
+  myself. See note 16. A construction at 2396 would be real; but the standard
+  constructions plus order multiplication provably cannot reach it, so only a direct
+  sequence search can.
 - **Rota's basis conjecture (1989).** Small `n` checkable by exhausting column
   assignments. A counterexample at small `n` would be extraordinary and therefore
   must be checked twice for bugs before being believed.
