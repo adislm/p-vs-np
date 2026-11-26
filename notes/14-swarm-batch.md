@@ -370,6 +370,32 @@ family is *nearly* the right one. What actually breaks the conjecture is replaci
 each K_k by K_k minus an edge: G(4,3) is two K₄−e joined tip to tip by a
 three-vertex path. A near-miss family with one edge removed.
 
+## arXiv:2509.22026 — stable Kneser hypergraphs — theorem holds, proof has a wrong range
+
+Daneshpajouh, September 2025. Conjecture 2 itself survived everything: 129 solved
+instances across four scans, all matching χ = ⌈(n − max{r,s}(k−1))/(r−1)⌉, with
+the paper's own prior rectangle (30/30) reproduced first and the colourings
+recomputed by CDCL SAT and cross-checked against an independent solver.
+
+**The defect is in the proof of Theorem 3, not the theorem.** The proof asserts an
+equality of two ceilings when the remainder lies in {2^m, …, 2^{m+1}−2}.
+**Recomputed here for every m from 1 to 6**, over all residues mod 2^{m+1}−1:
+
+    m=1: equality holds at remainders {0}                 — paper says {2}
+    m=2: equality holds at {0, 5, 6}                      — paper says {4, 5, 6}
+    m=3: equality holds at {0, 9, …, 14}                  — paper says {8, …, 14}
+
+The pattern is exact: the true set is {0} ∪ {2^m+1, …, 2^{m+1}−2}. The printed set
+includes 2^m, where the equality in fact **fails**, and omits 0, where it holds.
+For m = 1 the printed set is disjoint from the hypothesis Theorem 3 actually uses,
+so that case is not covered at all.
+
+Smallest witness: m = 1, n = 14, k = 2 (r = 4, s = 6) gives A = 8, and
+⌈(8−2)/3⌉ = 2 while ⌈8/3⌉ = 3.
+
+An erratum rather than a refutation — the theorem's own remainder hypothesis is
+correct and its conclusion holds — but the proof as written does not establish it.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
