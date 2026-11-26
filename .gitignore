@@ -35,3 +35,17 @@ paper_check/
 target_*/
 *_work/
 *_scripts/
+
+# landmark-problem sweep scratch; promoted scripts go to tools/
+erdos_straus/
+lonely_runner/
+ramsey55/
+ramsey_verify/
+rota_basis/
+schur/
+eg_check.c
+r39.html
+
+# virtualenvs created by agent runs
+venv/
+.venv/
