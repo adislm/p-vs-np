@@ -122,3 +122,77 @@ captions also carry wrong ranges. Neither affects the mathematics.
 claimed two 2-path graphs; the program showed the fan and the ribbon are
 isomorphic there. The enumeration was right and the hand-check wrong — which is
 the rule stated at the top of this file, applied to itself.
+
+## 4. Independent verification of another group's counterexamples
+
+`AmirMakir/broken-conjectures` is doing the same work as this file: agents finding
+counterexamples to open conjectures, with exact Python verifiers and Lean proofs.
+Its third result is the spectral conjecture that `notes/12` had recorded as
+surviving — it is false, and that correction is recorded there. The rest of its
+claims were verified here independently, rebuilding each witness rather than
+running their code.
+
+### Result 3 — spectral conjecture — CONFIRMED
+
+Recorded in `notes/12`: λ₂ > μ₁ − 2 on the 11-vertex graph G(4,3), verified with
+symbolic eigenvalues. The Laplacian characteristic polynomial factors, giving
+μ₁ = (7+√5)/2 exactly.
+
+### Result 4 — Hausmann Question 5.4 — CONFIRMED
+
+**Question, verbatim** (arXiv:2611.05178, Hausmann, *Weighted Max Cut in Subcubic
+Graphs*, November 2026): "Does every subcubic graph G of odd girth exactly five
+admit a partition V(G) = L ∪ R such that L is independent and every component of
+G[R] has order at most three?"
+
+**The witness is the Wagner graph** V₈: vertices 0–7, rim edges i ~ i+1 mod 8,
+rungs i ~ i+4 for i = 0..3. It is cubic (so subcubic), has 12 edges, and its
+**odd girth is 5** while its girth is 4 — the 4-cycles do not disqualify it.
+
+**Exhaustive over all 2⁸ = 256 partitions**, computed here independently:
+
+- 33 have L independent;
+- of those, **0** leave every component of G[R] of order at most 3;
+- the minimum, over all independent L, of the largest component size is **4**.
+
+So the answer to Question 5.4 is **no**.
+
+*A bug of my own, recorded.* My first check reported odd girth 4 and would have
+refuted the witness. The routine was returning the shortest cycle of *any* parity
+and calling it the odd girth. Fixing it to consider only odd lengths gives 5, and
+the witness stands. The general lesson matches the one in `notes/12`: when a check
+disagrees with a claim, suspect the check first, and be specific about what it
+actually computed.
+
+### Result 6 — 11-adic congruences — CONFIRMED
+
+**Conjecture 6.1** of Banerjee–Smoot, arXiv:2611.09681 (November 2026), with
+P^[1]_a(q) = (−q;q)_∞^a/(q;q)_∞ and P^[2]_a(q) = (−q;q)_∞^a/(q;q)_∞⁵:
+
+> (1) If a ≡ 3, 5, 7 (mod 11), then p^[1]_a(11^α n + δ) ≡ 0 (mod 11^{⌈α/2⌉}),
+> where 24δ ≡ 1 − a (mod 11^α).
+> (2) If a ≢ 1, 3, 5 (mod 11), then p^[2]_a(11^α n + δ) ≡ 0 (mod 11^{⌈α/2⌉}),
+> where 24δ ≡ 5 − a (mod 11^α).
+
+**Both parts fail**, and the congruence-class trap was checked explicitly: 36 ≡ 3
+satisfies part (1)'s hypothesis, and 40 ≡ 7 satisfies part (2)'s. With α = 3 the
+required modulus is 11² = 121, and 24·54 = 1296 ≡ 1−36 ≡ 5−40 (mod 1331), so
+δ = 54 is correct.
+
+**Recomputed here from the product definitions**, in exact integer arithmetic:
+
+    p^[1]_36(54) = 62043410886974649205238011198   divisible by 11, not by 121
+    p^[2]_40(54) = 66134580699742235651549220246110  divisible by 11, not by 121
+
+Both have 11-adic valuation 1 where the conjecture requires 2. The digits match
+the other group's figures exactly, computed by three different algorithms here.
+
+**This one is genuinely new.** The paper is at v1, no revision, no journal
+reference, and the authors prove only the a = 2 case of part (2); the general
+conjecture was proposed in the same paper's conclusion. A falsification of a
+conjecture proposed four weeks ago, still uncited, is the most valuable thing in
+this file.
+
+### Results 1, 2 and 5 — not verified here
+
+The remaining claims were not checked and are not endorsed by this file.
