@@ -220,6 +220,41 @@ certification through `n = 9`. The open frontier starts near `n = 18`, `δ⁺ = 
 (combining `r ≤ 5` with the 0.3465 triangle threshold), so this is nowhere near it.
 No counterexample, and none expected.
 
+## Erdős–Gyárfás
+
+Every graph with minimum degree `≥ 3` contains a cycle whose length is a power of 2.
+
+**Published range, with a caveat.** The best figures found are all graphs of order
+`≤ 40`, cubic graphs `≤ 48`, bipartite `≤ 66` — but these come from a September 2026
+preprint (Ducoffe–Dumitru, arXiv:2609.28594) echoed by MathWorld, and **no
+peer-reviewed publication of those bounds could be confirmed**. Earlier computational
+lineage is solid: Markström (2004) showed a cubic counterexample needs `≥ 30` vertices
+and exhibited the four 24-vertex cubic graphs whose only power-of-2 cycle length is
+16; Aldred–Royle ran the cubic census to `n = 34`; Royle–Markström gave `≥ 17` in
+general. So even the "published range" for this conjecture is softer than it looks.
+
+**What was verified here: all connected graphs with `δ ≥ 3`, orders `4 ≤ n ≤ 11`.**
+Connected is enough — a disconnected `δ ≥ 3` graph has a `δ ≥ 3` component.
+
+| `n` | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---|---|---|---|---|---|---|---|---|
+| graphs | 1 | 3 | 19 | 150 | 2,589 | 84,242 | 5,203,110 | 577,076,528 |
+
+Total 582,366,642 graphs, **0 counterexamples**. Counts match OEIS A007112 exactly,
+which is the check that the enumeration is complete; the cycle detector was
+cross-checked against an independent implementation on every graph to `n = 8` and on
+controls — it correctly rejects `C₃, C₅, C₁₀` and accepts `C₄, C₈, C₁₆, K₄`,
+Petersen, `K₃,₃`. The `n = 11` pass took 298 s.
+
+Cubic graphs separately to `n = 20` (matching OEIS A002851), 0 counterexamples — but
+this is a strict subset and does **not** extend the `δ ≥ 3` range, since "reduce to
+cubic" holds only for regular minimal counterexamples.
+
+**Scope.** Order `n` proves the statement for order `≤ n` and nothing beyond. The
+published bound is 40; `n = 12` alone has 113,373,005,661 such graphs, so this run
+reaches a small fraction of what is already known. It validates the pipeline and adds
+no coverage.
+
 ## Method notes
 
 Two of the three outcomes above are "the method does not reach". That is the normal
