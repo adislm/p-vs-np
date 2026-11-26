@@ -118,6 +118,30 @@ reproduces exactly. Two bugs in the first version of that enumerator were found
 and fixed before the result was accepted — worth recording, because the first
 version appeared to confirm and deny the finding in turn.
 
+### The repair
+
+A refutation is worth less than a correction, so here is the corrected
+characterisation. Write a one-`a` word as `b^i a b^(n−1−i)`, so the position `i`
+determines the word. Then the minimisers are exactly
+
+    2⌊n/4⌋ − 2 + (n mod 4)  ≤  i  ≤  2⌊n/4⌋ + 1
+
+a block of `4 − (n mod 4)` consecutive positions. Equivalently, the number of
+minimisers is `4 − (n mod 4)`: four when n ≡ 0, three when n ≡ 1, two when n ≡ 2,
+one when n ≡ 3.
+
+The paper's two words are `i = ⌈(n−1)/2⌉` and `i = ⌊(n−1)/2⌋`, the two central
+positions. Those lie inside the block — which is exactly why they are minimisers
+and exactly why the claim that they are the *only* ones is false. The theorem is
+not off by a correction term; it undercounts a block that always contains the
+positions it names.
+
+**Checked against every n from 4 to 120, with no mismatch.** This is an observed
+and verified pattern, not a proof: the range is finite and the statement is
+asserted for all n. It would be good to prove, and the shape — a block of
+`4 − (n mod 4)` positions near the centre — suggests the equality case of the
+paper's own argument is where the proof would go.
+
 ## 1. OEIS conjectures
 
 Four conjectures attached to OEIS entries, all still standing over the ranges
