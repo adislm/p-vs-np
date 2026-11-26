@@ -219,6 +219,77 @@ indexed one too low, and the n = 1 row (a single point, h = (1)) is missing. The
 paper's own generating function corroborates: its x^n coefficient is −L_n with
 L₁ = 1, L₂ = 4. An indexing slip in the table, not in the mathematics.
 
+## arXiv:2507.17780 — machine-generated invariants — one conjecture false from n = 9
+
+Davila, Brimkov and Pepper, on ten years of conjectures produced with a machine
+collaborator. Four conjectures, enumerated against every connected graph to order
+9 (273,192 graphs, with A000088 and A001349 reproduced exactly).
+
+| Conjecture | Verdict |
+| --- | --- |
+| α ≥ (a+R)/Δ for nontrivial connected G | fails **only at K₂**; all 273,191 graphs with n ≥ 3 pass |
+| Z ≤ α+1 for connected Δ ≤ 3, G ≇ K₄ | clean over 358,889 subcubic graphs to n = 14 |
+| i ≤ μ* for r-regular G, r > 0 | clean over 590,081 regular graphs |
+| μ* ≤ H for nontrivial connected G | **FALSE from n = 9** |
+
+**The K₂ failure is a boundary slip.** Both endpoints have α = a = R = Δ = 1, so
+the bound reads 1 ≥ 2. The n ≥ 3 version is separately known.
+
+**The μ* ≤ H failure is real and I checked it here.** The smallest witness is the
+friendship graph F₄ — four triangles sharing a centre, nine vertices. Recomputed
+from scratch: the degrees are 8 and then eight 2's, so the harmonic index is
+
+    H = 8·(2/10) + 4·(2/4) = 8/5 + 2 = 18/5 = 3.6
+
+and the minimum maximal matching is 4, since every triangle must contribute an
+edge or its two rim vertices would leave a matching edge addable. So 4 ≤ 3.6 is
+false. Verified by brute force over all edge subsets as well as by the parity
+argument.
+
+## arXiv:2507.20298 — eta quotients — three defects
+
+Huber, McLaughlin and Ye. The proved vanishing results were reproduced over
+truncations of 6,000–20,000 terms as a control, and all held.
+
+**One defect I checked directly.** The proof of Lemma 2.1 asserts
+`(−q;−q)_∞ = f₂³/(f₁f₄)`. Computed here as power series:
+
+    (−q;−q)_∞    = 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, …
+    f₂³/(f₁f₄)   = 1, 1, −1, 0, 0, −1, 0, −1, 0, 0, 0, 0, −1, …
+    f₂/f₁        = 1, 1, 1, 2, 2, 3, 4, 5, 6, 8, 10, 12, 15, …
+
+so the identity is false and the correct one is `(−q;−q)_∞ = f₂/f₁`. The lemma's
+two conclusions remain true; the proof's first step is not.
+
+Two further defects from the other audit: an equation dropping a factor of f₄²
+(making it fail at q⁷ and q¹¹), and a table whose "extra zero" exponents are each
+one too high.
+
+## arXiv:2511.15877 — fractional triangle decompositions — finite n, not the limit
+
+Mahabaduge and Simkin, November 2026. Two conjectures, both asymptotic as n → ∞.
+
+**The audit found finite cases where the statement fails, and was careful about
+what that means.** Conjecture 7.1, read at fixed n, is false at n = 4, 5 and 6:
+once the graph process has just become triangle-covered it can be K₄ − e, K₅ − 2e
+or K₆ − 2e, and none of those admits a fractional triangle decomposition — edge
+12 is forced to carry weight 2. Verified by an exact DP over all orderings.
+
+**But the conjecture is a limit statement, and it is not refuted.** The audit says
+so explicitly: "For n = 7–12 both types of K_n − 2e are FTD, so this universal
+E−2 obstruction stops. The n → ∞ whp claim is not refuted." That is the right
+distinction, and a less careful report would have called this a counterexample.
+
+## Two more clean audits
+
+- **arXiv:2611.22656**, Golomb rulers with real marks — every table reproduced,
+  all 126 Singer rulers for prime powers m ≤ 13 verified with exact dual
+  certificates, and G_R = G_Z re-proved independently for 2 ≤ n ≤ 10.
+- **arXiv:2603.04218**, arrow pattern avoidance — the paper's own sequences in
+  Tables 2 and 3 reproduced exactly, and all three parts of Conjecture 7.1
+  verified: a_n(123,(12;1→3)) = 2ⁿ−n, a_n(321,(12;1→3)) = F_{2n−1}, and
+  a_n(321,(12;1→2)) = M_n, each for every n up to 16.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
