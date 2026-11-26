@@ -355,7 +355,7 @@ That is what makes the null results worth recording.
 | Conjecture | Source | Result |
 | --- | --- | --- |
 | connected G with m ≥ n+1 has positive square energy s⁺(G) ≥ n | arXiv:2506.07264, Conj 1.2 | survives; minimum slack 0.698 |
-| every connected graph has λ₂ ≤ μ₁ − 2 | arXiv:2611.03879, Conj 2 (#20829) | survives; minimum slack 0.0374 |
+| every connected graph has λ₂ ≤ μ₁ − 2 | arXiv:2611.03879, Conj 2 (#20829) | **FALSE at n = 11** — see below |
 | γ_t(G) ≤ a(G) + 1 for connected G with an edge | arXiv:2609.10795 (δ ≥ 2 case proved; δ = 1 open) | survives; sharpness witness found |
 
 **These extend published checks by one order, which is the honest size of the
@@ -364,6 +364,31 @@ n = 10. The spectral corpus tested n ≤ 9 and explicitly extended only its
 Conjectures 1 and 7 to n = 10; this extends #20829. The domination paper settles
 δ ≥ 2 and leaves δ = 1, which is what was searched here. None of that is a
 resolution; all of it is the first order beyond where the authors stopped.
+
+### Correction: the spectral conjecture is false at n = 11
+
+The row above first read "survives; minimum slack 0.0374". That is correct for
+n ≤ 10 and wrong as a summary, and the near-zero slack at n = 10 was the warning.
+
+`AmirMakir/broken-conjectures` reports a counterexample on 11 vertices: two
+copies of K₄ − e joined tip to tip by a path with three inner vertices, G(4,3).
+**Verified independently here, exactly**, by rebuilding the graph from that
+description and computing eigenvalues symbolically with sympy:
+
+- the adjacency spectrum begins 2.675131, 2.641186, 1.539189, …, so
+  λ₂ = 2.641186476…;
+- the Laplacian characteristic polynomial factors as
+  λ(λ−4)²(λ²−7λ+11)(λ²−4λ+2)(λ⁴−9λ³+25λ²−22λ+2), so the largest Laplacian
+  eigenvalue is μ₁ = (7+√5)/2 and μ₁ − 2 = (3+√5)/2 = 2.618033988…;
+- therefore λ₂ − (μ₁ − 2) = 0.02315… > 0.
+
+So Conjecture 2 of arXiv:2611.03879 is **false**, and n = 11 is where it dies.
+
+This is the correct outcome for an exhaustive search to record, and the lesson is
+worth stating: *surviving all graphs on ≤ 10 vertices is not evidence of truth*.
+The search was sound and its range was stated; the conclusion drawn from it was
+too strong. A minimum slack of 0.037 at the boundary of a finite search is a
+signal to extend the range, not to record survival.
 
 **A sharpness witness, checked by hand during this audit.** For the total
 domination–annihilation conjecture, take the 9-vertex graph with edges
