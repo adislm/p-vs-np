@@ -268,6 +268,44 @@ in the mathematics, not in an ambiguity of wording.
 survey still lists it as Conjecture 8.12. Absence of evidence in a search is not
 proof of openness, and that is stated as the limit of this claim.
 
+### Result 5 — five statements from Cazenave's conjecture corpus — CONFIRMED, with a qualification
+
+**The qualification matters and is not pedantic.** These five statements are not
+in the paper's body. The identifiers #861166, #1053490, #2632674, #753029 and
+#121183 appear nowhere in the PDF of arXiv:2611.03879; they are rows of
+`index_conjectures.csv` in the downloadable archive that §8 of the paper points
+to, each marked `statut=ouverte` with an empty `contre_exemple` field. So the
+correct description is "five statements marked open in the corpus archive", not
+"five of the paper's conjectures".
+
+All five are false, with witnesses on 10 to 15 vertices:
+
+| ID | Statement | Witness | Margin |
+| --- | --- | --- | --- |
+| #861166 | rad ≤ 2(Randic − λ₂) | 10 vertices, 19 edges | +0.0701 |
+| #1053490 | λ₂ ≤ Randic − rad/2 | same graph | +0.0351 |
+| #2632674 | λ₂ ≤ Randic − √(rad−1) | 12 vertices, 29 edges | +0.0131 |
+| #753029 | μ₂ ≤ 1 + 2^{λ₁} | 15-vertex tree | +0.0370 |
+| #121183, #123215, #715458 | λ₂ ≤ (log rank)^{R/2} variants | 11-vertex tree | +0.0111 |
+
+**One verified here independently.** For the last family, the 11-vertex tree gives
+
+- characteristic polynomial λ⁷(λ−2)(λ+2)(λ²−6), so λ₂ = 2 **exactly**;
+- rank 4 and Randić index R = 4.2101642960, so the right-hand side is
+  (ln 4)^{R/2} = 1.9889203416.
+
+Since 2 > 1.98892, the statement fails. All three parenthesised forms of it
+coincide, so one witness kills all three.
+
+**The other group's computation is careful about error.** The eigenvalues were
+isolated from exact integer characteristic polynomials with interval widths below
+10⁻³⁵ and re-checked by exact rational Sylvester-inertia congruence; the
+transcendental comparisons carry an explicit additive margin where the numerical
+error allowance is smaller by more than seventy orders of magnitude. The
+multiplicity question — "second largest with multiplicity" versus "second largest
+distinct" — makes no difference on any of the graphs used, since the relevant
+eigenvalues are simple.
+
 ## 5. arXiv:2611.19635 — box-free colourings — clean audit
 
 Alm and Miller, *Constructive and computational methods for extremal and
