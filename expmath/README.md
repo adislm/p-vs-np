@@ -20,6 +20,9 @@ so a claim can be re-run rather than trusted.
 | `scripts/oeis_cub2.py` | A375785, integer cuboids with surface 6n² |
 | `scripts/oeis_perm.py` | A397619, permutations with prime adjacent products |
 | `scripts/oeis_primedfs2.py` | A392666, sign conjecture for a triangle recurrence |
+| `scripts/cow_steady_table.py` | steady-word table for arXiv:2209.08507 |
+| `scripts/cow_steady_lists.py` | the size-4 list conjecture |
+| `scripts/cow_bifurcate.py` | bifurcate chains and complete trees |
 
 Run with `python3 -I scripts/<name>.py`. Several need `networkx`, `sympy` or
 `gmpy2`; the imports at the top of each file say which.

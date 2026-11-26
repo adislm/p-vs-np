@@ -350,6 +350,46 @@ leaves 5, 2 and 4 force 0, 6 and 7 into any total dominating set, and each of
 those then still needs a neighbour in the set, so |D| ≥ 6. Hence γ_t = 6 = a + 1
 and the +1 cannot be removed. Verified independently here, not taken on report.
 
+## 3c. Combinatorics on words
+
+Three open conjectures and one open problem, all from Dębski–Grytczuk–Pawlik,
+*Extensions and reductions of square-free words*, arXiv:2209.08507, published in
+Discrete Mathematics 347(3):113825 (2024). All null results over exhaustive,
+deterministic ranges.
+
+**Table 1 was reproduced in full before anything was tested** — the number of
+quaternary steady words of length n up to symbol permutation, for every n from 3
+to 32: 1, 2, 3, 5, 5, 7, 9, 12, 16, 21, 28, 37, 45, 58, 73, 93, 101, 124, 150,
+179, 216, 257, 309, 376, 453, 551, 662, 798, 957, 1149. The paper's worked
+verdicts on individual words also match. This is the check that makes the rest
+worth reading.
+
+| Statement | Range | Result |
+| --- | --- | --- |
+| every sequence of n size-4 lists admits a steady word | all 4-lists from a 5-letter universe, n ≤ 10 (1,953,125 cases); 6-letter universe, n ≤ 7 (11,390,625) | survives |
+| there is an infinite chain of quaternary bifurcate words, each a one-letter extension of the last | all bifurcate words over 4 letters, length ≤ 13 | survives — chains exist at every length 1..13 |
+| there is a complete bifurcate tree over 5 letters | exact recursive criterion to depth 12 | survives to depth 12; depth 13 unresolved |
+| the analogous statement for size-3 lists | all 3-lists from a 4-letter universe, n ≤ 12 (4,194,304); 5-letter universe, n ≤ 8 (10,000,000) | survives |
+
+**The informative datum is a threshold, not a null result.** Under the same
+recursive completeness test, complete bifurcate trees over **4** letters die at
+depth 4 — consistent with Theorem 7 of the paper, which proves no such tree
+exists — while over **5** letters they survive past depth 12. That reproduces
+empirically the conjectured minimal alphabet of 5, which the paper proves only
+for a different parameter. The control case is what gives the 5-letter result
+meaning: the same code fails at 4, so it is not simply never failing.
+
+**The chain witness was verified independently here.** The claimed chain
+`3, 23, 123, 0123, 10123, 310123, 1310123, 01310123, 301310123, 1301310123,
+31301310123, 231301310123, 1231301310123` was checked for both properties: every
+word is square-free, and each is the previous with exactly one letter inserted.
+Both hold.
+
+**Caveats stated by the search.** For the list conjecture the universe of symbols
+is bounded, so arbitrary alphabets are not excluded. For the tree conjecture,
+depth 13 hit a 3,000,000-state cap and is genuinely unresolved rather than
+survived.
+
 ## 4. Combinatorial designs: re-verifications, not new ground
 
 Recorded for completeness and explicitly *not* as results.
