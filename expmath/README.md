@@ -14,6 +14,9 @@ so a claim can be re-run rather than trusted.
 | `scripts/ryser_latin.py` | Ryser's conjecture, transversals in Latin squares |
 | `scripts/ch_diffset.py` | circulant Hadamard matrices via difference sets |
 | `scripts/graceful_trees.py` | graceful trees (Ringel–Kotzig), already settled to n ≥ 35 |
+| `scripts/spec.py`, `scripts/energy.py` | spectral and positive-square-energy conjectures, all connected graphs |
+| `scripts/dom2.py` | total domination vs the annihilation bound |
+| `scripts/tree6b.py`, `scripts/verify_hp.py` | tree inequalities and witness verification |
 
 Run with `python3 -I scripts/<name>.py`. Several need `networkx`, `sympy` or
 `gmpy2`; the imports at the top of each file say which.

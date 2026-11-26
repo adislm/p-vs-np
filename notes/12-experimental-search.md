@@ -287,6 +287,42 @@ corroborating count extended from q ≤ 50 000 (669 Sophie Germain primes, 160
 satisfying the condition, 23.9%) to q ≤ 10⁶ (7 745 primes, 1 880 satisfying,
 24.3%). That is an extension of evidence, not a test.
 
+## 2b. Recent graph theory, exhaustive to ten vertices
+
+Three conjectures from 2025–2026, each checked against **every** connected graph
+on at most ten vertices — 11,989,764 graphs, with 11,716,571 of them at n = 10
+alone. Generation was exhaustive and unlabelled (nauty `geng`); nothing was
+sampled.
+
+**Validation first.** The enumeration reproduces A000088 (all graphs, n ≤ 9) =
+1, 2, 4, 11, 34, 156, 1044, 12346, 274668 and A001349 (connected, n ≤ 10) =
+1, 1, 1, 2, 6, 21, 112, 853, 11117, 261080, 11716571 exactly. Spectral ranks from
+`numpy.eigvalsh` matched exact sympy ranks on 1,500 random 10-vertex graphs, and
+the domination routine matched brute force on every connected graph of order ≤ 8.
+That is what makes the null results worth recording.
+
+| Conjecture | Source | Result |
+| --- | --- | --- |
+| connected G with m ≥ n+1 has positive square energy s⁺(G) ≥ n | arXiv:2506.07264, Conj 1.2 | survives; minimum slack 0.698 |
+| every connected graph has λ₂ ≤ μ₁ − 2 | arXiv:2611.03879, Conj 2 (#20829) | survives; minimum slack 0.0374 |
+| γ_t(G) ≤ a(G) + 1 for connected G with an edge | arXiv:2609.10795 (δ ≥ 2 case proved; δ = 1 open) | survives; sharpness witness found |
+
+**These extend published checks by one order, which is the honest size of the
+result.** The authors of the energy conjecture verified n ≤ 9; this reaches
+n = 10. The spectral corpus tested n ≤ 9 and explicitly extended only its
+Conjectures 1 and 7 to n = 10; this extends #20829. The domination paper settles
+δ ≥ 2 and leaves δ = 1, which is what was searched here. None of that is a
+resolution; all of it is the first order beyond where the authors stopped.
+
+**A sharpness witness, checked by hand during this audit.** For the total
+domination–annihilation conjecture, take the 9-vertex graph with edges
+(0,5), (0,8), (1,6), (1,8), (2,6), (3,7), (3,8), (4,7). Its degree sequence is
+1,1,1,2,2,2,2,2,3, so m = 8 and a(G) = 5 (prefix sums are 1,2,3,5,7, then 9 > 8).
+The set {0,1,3,6,7,8} is total dominating, so γ_t ≤ 6. For the lower bound: the
+leaves 5, 2 and 4 force 0, 6 and 7 into any total dominating set, and each of
+those then still needs a neighbour in the set, so |D| ≥ 6. Hence γ_t = 6 = a + 1
+and the +1 cannot be removed. Verified independently here, not taken on report.
+
 ## 4. Combinatorial designs: re-verifications, not new ground
 
 Recorded for completeness and explicitly *not* as results.
