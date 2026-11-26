@@ -193,6 +193,46 @@ conjecture was proposed in the same paper's conclusion. A falsification of a
 conjecture proposed four weeks ago, still uncited, is the most valuable thing in
 this file.
 
-### Results 1, 2 and 5 — not verified here
+### Result 2 — random sequential adsorption versus the jammed ensemble — CONFIRMED
 
-The remaining claims were not checked and are not endorsed by this file.
+**Conjecture 5.2** of Higuita-Diaz, López, Roldán-Correa, arXiv:2611.14718
+(v2, 18 November 2026), verbatim:
+
+> For every finite simple graph G with maximum degree Δ(G) ≤ 3, the sequential
+> model dominates the static model (N^stat ≤_st N^seq).
+
+Two things about this statement are easy to get wrong and decide the whole
+question. "Dominates" is **first-order stochastic dominance over the full
+distribution**, not a statement about means. And N^stat is uniform over *all*
+maximal independent sets, while N^seq is the size reached by picking a vertex
+uniformly among those still available, occupying it, and blocking its neighbours.
+
+**The witness is a 15-vertex tree of maximum degree 3.** Recomputed here exactly
+in rational arithmetic, independently of the other group's code:
+
+- maximal independent sets: 55, of sizes 6 (one set), 7 (fifty), 8 (four);
+- N^seq: P(6) = 64/3375, P(7) = 7993019/10135125, P(8) = 1949914/10135125;
+- N^stat: 1/55, 50/55, 4/55.
+
+The cumulative distributions cross. At k = 6,
+
+    P[N^seq ≤ 6] = 0.018963  >  P[N^stat ≤ 6] = 0.018182
+
+which is exactly the inequality the conjecture forbids. At k = 7 the order
+reverses, so neither distribution dominates the other.
+
+**The weaker statement survives, and this matters.** The means are
+E[N^seq] = 7.1734 and E[N^stat] = 7.0545, so the sequential model does have the
+larger expected jammed set. Only the distributional claim — which is what the
+paper actually states — fails. Anyone reading this as "the sequential model is
+smaller on average" would draw the wrong conclusion.
+
+**Still open.** Version 2, two weeks before this audit, states Conjecture 5.2 as a
+conjecture; no indexed refutation exists. The other group's report also re-ran the
+exhaustive check over all 27,525 connected graphs of maximum degree ≤ 3 up to 12
+vertices and found no violation, matching the paper's own claimed range — so the
+example at 15 vertices is precisely one step beyond where the authors looked.
+
+### Results 1 and 5 — not verified here
+
+The remaining two claims were not checked and are not endorsed by this file.
