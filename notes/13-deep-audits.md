@@ -306,6 +306,42 @@ multiplicity question — "second largest with multiplicity" versus "second larg
 distinct" — makes no difference on any of the graphs used, since the relevant
 eigenvalues are simple.
 
+## 6. arXiv:2609.02477 — the planar bondage conjecture is refuted — clean audit
+
+Srivastava, *The Truncated Octahedral Graph Has Bondage Number Five*, August 2026.
+
+**The conjecture, verbatim** (Dunbar–Haynes–Teschner–Volkmann, 1998): "Every
+nontrivial connected planar graph G satisfies b(G) ≤ Δ(G) + 1."
+
+**The refutation uses the truncated octahedral graph T**, and it reproduces
+completely. Rebuilt here from coordinates rather than from the paper's edge list —
+T is the 24 points whose coordinates are permutations of (0, ±1, ±2), with edges
+between points at distance √2:
+
+| Check | Result |
+| --- | --- |
+| vertices, edges | 24, 36 |
+| regular | cubic, all degrees 3 |
+| planar | yes; Euler gives F = 36 − 24 + 2 = 14 |
+| domination number | **γ(T) = 8** (no 7-set dominates, exhaustively) |
+| dominating 8-sets | **1,767** |
+| four-edge deletions | all **58,905** scanned |
+| deletions that raise γ | **none**; the minimum number of surviving 8-sets is exactly **5** |
+
+So γ(T − F) = 8 for every four-edge set F, giving b(T) ≥ 5; and with the paper's
+five-edge set, b(T) = 5. Since Δ(T) + 1 = 4 < 5, the conjecture is false.
+
+**Everything matched the paper**, including the specific figures the other audit
+reported: 1,767 dominating 8-sets and a minimum of five survivors. Two independent
+implementations — one from the paper's edge list, one from coordinates — agree on
+every number.
+
+**Verdict:** a clean audit of a correct refutation. Note what this paper is doing:
+it *refutes* a twenty-eight-year-old conjecture rather than adding a new one. That
+is exactly the kind of result the machinery in this repository is built to find,
+and it is worth recording that the one paper in this batch whose subject matter is
+a refutation turned out to be correct in every checked particular.
+
 ## 5. arXiv:2611.19635 — box-free colourings — clean audit
 
 Alm and Miller, *Constructive and computational methods for extremal and
