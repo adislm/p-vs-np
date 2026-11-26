@@ -345,6 +345,31 @@ the internal contradiction — the printed form gives a₀ = 0, a₁ = −4 agai
 table that begins 1, 2, 7 — and that the other two defects are numerical claims
 with stated margins.
 
+## arXiv:2611.03879 — nine spectral conjectures — eight clean, one already known false
+
+The largest sweep in the batch: all 11,989,763 connected graphs on at most ten
+vertices, with A001349 reproduced exactly, plus families to n = 4095 (binary trees,
+hypercubes Q₄–Q₁₁, grids, spiders, dumbbells) and random connected graphs to n = 60.
+
+**Eight of the nine hold.** The equalities at the boundary are exact, not
+numerical: `μ₂² ≥ 4λ₂+1` is attained at the star, `2R ≤ rk(A)·λ₁` at complete
+bipartite graphs, and `μ₂ + rk(A) ≤ 2m` at K₂, K₃ and P₄ — all re-evaluated at
+50–130 digits and sitting on the noise floor.
+
+**The ninth is #20829, `λ₂ ≤ μ₁ − 2`, and the report's "clean for all nine" is
+true only within its range.** The audit stops at n = 10. At n = 11 the conjecture
+is false, as `notes/12` records: the graph G(4,3) has λ₂ = 2.641186 and
+μ₁ − 2 = (3+√5)/2 = 2.618034, a margin of **+0.0232 against it**. Re-confirmed
+here. This is precisely the failure mode this file keeps flagging — an exhaustive
+result reported as a verdict when it is a range-restricted result.
+
+**One detail that makes the miss interesting.** The audit finds #20829's margin on
+dumbbells — two K_k joined by a path — shrinking to 1.24×10⁻⁸⁴ at k=62, l=48,
+still positive, far tighter than on the paths the paper itself considered. So the
+family is *nearly* the right one. What actually breaks the conjecture is replacing
+each K_k by K_k minus an edge: G(4,3) is two K₄−e joined tip to tip by a
+three-vertex path. A near-miss family with one edge removed.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
