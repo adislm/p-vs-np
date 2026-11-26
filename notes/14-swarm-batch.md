@@ -139,6 +139,24 @@ condition (i ≥ ℓ). Read off the prose literally the count differs on 12 of t
 permutations of 𝔖₄ and contradicts the paper's own table; the formula is correct
 and the prose is loose. Recorded as wording, not error.
 
+## arXiv:2611.27685 — remoteness in trees with a given segment sequence — CLEAN
+
+Allie, Du Preez, Hefty and Mafunda, November 2026. Conjecture: for every segment
+sequence D, a D-tree with minimum remoteness is starlike or a (Δ,2)-tree — that
+is, a minimiser never has three or more branch vertices.
+
+**Tested over every unlabelled tree on at most twenty vertices**: 1,346,023 of
+them, with the counts matching A000055 term by term. Over 1,996 (n, D) pairs, no
+tree with three or more branch vertices was ever a remoteness-minimiser, not even
+tied, while 98 segment sequences at n = 20 show the (Δ,2) tree strictly beating
+both the starlike tree and a three-branch competitor — so the test is not vacuous.
+
+**One edge case the conjecture's wording does not cover.** A single-segment
+sequence D = (n−1) determines the path uniquely, which has no branch vertices at
+all and is therefore neither starlike nor (Δ,2). That is an implicit-hypothesis
+gap rather than a counterexample, and it should be read as "assuming branch
+vertices are present".
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
