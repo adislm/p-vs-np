@@ -313,6 +313,38 @@ So the true threshold is p ≥ 19. The enumeration is unaffected, because at 19 
 23 the set is affinely equivalent to configurations the paper already lists; only
 the sentence's characteristic range is wrong.
 
+## arXiv:2606.13845 — k-convex polyominoes — three defects
+
+Conway and Guttmann, GASCom 2026. The enumeration tables are correct: convex
+polyominoes 1, 2, 7, 28, 120, 528, … and every entry through a₉ for k = 3..7 were
+reproduced by independent generation, using no formula from the paper.
+
+**The general conjecture is misprinted.** It states
+
+    Q_{2,k} = 4x² T_k²(1/(2√x)) / ((1−4x)^{3/2} U_k((1−2x)/(2x)))
+
+twice, but the paper's own definitions q_k = r_k², r_k = 2x^{k/2}T_k,
+d_k = x^kU_k and Q₂ = x⁴q_k/((1−4x)^{3/2}d_k) force **4x⁴**. The check is internal
+and needs no algebra beyond substitution: as printed, k = 3 yields a₀ = 0 and
+a₁ = −4, while the paper's own table gives 1, 2, 7, 28, 120. With x⁴ in place of
+x², every listed generating function for k = 3..7 reproduces exactly, and the
+corrected form predicts a₉ = 203680 at k = 8, which independent enumeration
+confirms.
+
+**A sign error in the k = 5 asymptotics.** The paper writes
+`a_{n+2} ~ 4ⁿ(n/12 − √n/(12√π) + 13/72 + 5/(288√(nπ)))`. The exact coefficient of
+4ⁿ/√(nπ) is −5/288, not +5/288; a 120-digit numeric check gives
+−0.01724, −0.01730, −0.01733 at n = 2000, 4000, 8000, converging to
+−5/288 = −0.017361.
+
+**A range slip.** Even corrected, the formula fails at k = 1: a₆ = 954 versus 956.
+"All k" should read k ≥ 2.
+
+*Scope note.* I did not redo the Chebyshev algebra myself. What I can vouch for is
+the internal contradiction — the printed form gives a₀ = 0, a₁ = −4 against a
+table that begins 1, 2, 7 — and that the other two defects are numerical claims
+with stated margins.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
