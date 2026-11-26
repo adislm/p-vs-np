@@ -251,6 +251,42 @@ a positive control confirming that no genuine square could be filtered out.
 **One limit worth stating.** The A238281 result extends a tabulated range rather
 than opening new ground, and the extension is by a factor of four.
 
+## 3b. Number theory, second batch
+
+Three more recent conjectures, again all surviving. Identifiers resolved and one
+recurrence independently reproduced during the audit.
+
+| Conjecture | Source | Range | Result |
+| --- | --- | --- | --- |
+| t(n) ≥ 2 for every n, where t(n) counts "Toda primes" | arXiv:2511.19744 (Nov 2025) | n ≤ 10⁷ | survives; minimum is 2, attained at n = 1, 2, 5, 17, 19, 31, … |
+| four Ramanujan-type congruences for overpartitions, mod 7, 17, 19 and 23 | arXiv:2603.08510 (Mar 2026) | every index ≤ 4.1×10⁶ | survives; zero failures |
+| if S(q) ≠ ∅ for an odd prime q then some prime p ≡ 1 (mod q) has z(p) | π(q) | arXiv:2604.17847 (Apr 2026) | not finitely falsifiable — see below |
+
+**The Toda count has a structural explanation for surviving.** For prime n ≥ 7 one
+can prove t(n) ≥ 2 outright, so any failure would have to be composite; none
+occurs to 10⁷.
+
+**The overpartition congruences were checked against three independent
+computations.** The sequence p̄ was produced by the paper's identity
+Σ p̄(n)qⁿ = 1/φ(−q), giving the recurrence
+p̄(n) = 2·Σ_{k=1}^{⌊√n⌋} (−1)^{k+1} p̄(n − k²); by exact generating-function
+expansion; and by brute-force enumeration. All three agree. The recurrence was
+independently re-implemented during this audit and reproduces the published values
+p̄(0..15) = 1, 2, 4, 8, 14, 24, 40, 64, 100, 154, 232, 344, 504, 728, 1040, 1472
+exactly. The paper's two *proved* congruences (mod 11 and mod 13) were also
+verified, which is the useful control: it shows the machinery finds the
+congruences that are known to be there.
+
+**The third is not a falsification test, and the agent said so unprompted.** Every
+certificate of S(q) ≠ ∅ that a finite search can build — a prime ℓ ≡ 1 (mod q)
+with z(ℓ) | π(q) — *is itself* the witness p the conjecture asks for. A genuine
+counterexample would need S(q) to be non-empty only via a covering by several
+distinct primes, which no finite computation certifies. What was done instead is
+honest and weaker: the paper's Table 1 was reproduced row for row, and its
+corroborating count extended from q ≤ 50 000 (669 Sophie Germain primes, 160
+satisfying the condition, 23.9%) to q ≤ 10⁶ (7 745 primes, 1 880 satisfying,
+24.3%). That is an extension of evidence, not a test.
+
 ## 4. Combinatorial designs: re-verifications, not new ground
 
 Recorded for completeness and explicitly *not* as results.
