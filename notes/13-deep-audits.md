@@ -59,3 +59,66 @@ reproduction pass catches and a reading pass does not.
 
 **Verdict:** a clean audit. Three conjectures survive over large ranges, one
 cosmetic error in a proof.
+
+## 2. arXiv:2609.31330 — 3-isogeny Selmer groups
+
+Weiss and Zou, September 2026. A clean audit: no defect in any conjecture.
+
+**What was actually verified, and what was not.** The paper's eight tables were
+parsed cell by cell. Every deterministic column — mean, SD, MSE, the min/max
+percent deviations — reproduces to printed precision, with a maximum relative
+error of about 0.5% attributable to rounding of the inputs. More tellingly, every
+cross-table sum is exact: Table 2's six blocks sum to Table 1's non-trivial count,
+Table 3 sums to Table 5's, and Tables 7 and 8 reproduce Tables 1 and 5 exactly.
+That is strong evidence the tables are internally consistent.
+
+What was *not* done, and should be said plainly: the billions of underlying curves
+were not regenerated. The raw counts are taken as given; only the arithmetic
+relations among them were checked. An error in the curve enumeration itself would
+not have been caught.
+
+**The computational definitions were implemented from scratch** and checked
+against the paper's own statements: the cubic-residue matrix construction, the
+dimension law, the kernel conditions, and the nullity identities. Exhaustive over
+6,576 normalized curves, sampled over about 150,000 more.
+
+**Both conjectures held.** The matrix-frequency conjecture converged toward
+uniformity as the prime pool grew, with the maximum deviation falling as
+predicted; the nullity-distribution conjecture matched the predicted limit law for
+every tested parameter. Neither was contradicted.
+
+**Two imprecisions, neither mathematical.** A sentence claims a maximum deviation
+of 6×10⁻⁴ where the table gives 2.27×10⁻⁴ for those rows (5.86×10⁻⁴ is the
+maximum over all blocks) — a wording slip. And one entry-marginal deviation is
+about 16σ under exact iid uniformity, which is a finite-sample effect on the
+marginals rather than a failure of the matrix-count uniformity.
+
+## 3. arXiv:2511.21524 — k-path graphs, algebraic connectivity and α-index
+
+de Paula, Justel, Oliveira, Caruba, November 2025. A clean audit that also
+extends the authors' own testing range.
+
+**Controls came first and passed**: the enumeration reproduces A000088 for all
+graphs and A001349 for connected graphs exactly. The k-path graphs themselves were
+generated three independent ways — the paper's algorithmic construction, a
+structural predicate run over *all* graphs, and the paper's literal recursive
+rule — all agreeing.
+
+**Table reproduction was complete**: 33 of 33 count cells, 260 of 260 numeric
+cells in the k = 2 tables, and 378 of 378 α-index cells. Zero mismatches. The
+paper's graph6 entries decode to the extremal graphs it claims.
+
+**Both conjectures held, including outside the authors' range.** The paper checks
+k ≤ 4 and α ∈ {0.1, …, 0.9}. The audit reaches k = 5, 6, 7 and 8, and α values
+down to 0.001 and up to 0.999 — near both endpoints of the interval, which is
+where a uniqueness claim is most likely to fail. No violation.
+
+**One expository gap, not a false claim.** The "second maximum" clause of
+Conjecture 5.2 is ill-posed when n = k+1, k+2 or k+3, because there the class
+L_{k,n} has exactly one element and a second maximum does not exist. Two table
+captions also carry wrong ranges. Neither affects the mathematics.
+
+**A methodology note worth keeping.** The agent's own first hand-analysis at n = 5
+claimed two 2-path graphs; the program showed the fan and the ribbon are
+isomorphic there. The enumeration was right and the hand-check wrong — which is
+the rule stated at the top of this file, applied to itself.
