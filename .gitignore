@@ -37,12 +37,12 @@ target_*/
 *_scripts/
 
 # landmark-problem sweep scratch; promoted scripts go to tools/
-erdos_straus/
-lonely_runner/
-ramsey55/
-ramsey_verify/
-rota_basis/
-schur/
+/erdos_straus/
+/lonely_runner/
+/ramsey55/
+/ramsey_verify/
+/rota_basis/
+/schur/
 eg_check.c
 eg_check
 eg_verify.py

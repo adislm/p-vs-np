@@ -5,6 +5,7 @@ Every claim in this repo that rests on a finite object gets checked here, by cod
 written separately from whatever produced the object. Usage:
 
     verify_cert.py schur     <colouring>        e.g. 0110220220110
+    verify_cert.py schurfile <path> <n>         certs/schur/ "C <colour> <ints>" format
     verify_cert.py vdw       <colouring> <k>    progression length k
     verify_cert.py ramsey    <n> <s> <r> <file> edges "u v" per line, 0-indexed
 
@@ -97,6 +98,38 @@ def check_ramsey(n, s, r, path):
     ok(f"{n} vertices, {edges} edges, no K_{s}, no independent {r}-set")
 
 
+def check_schur_file(path, n):
+    """Certificates in certs/schur/: lines "C <colour> <integers...>"."""
+    import collections
+    classes = collections.defaultdict(set)
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            p = line.split()
+            if p[0] != "C":
+                continue
+            classes[int(p[1])].update(int(x) for x in p[2:])
+    allv = [v for s in classes.values() for v in s]
+    dup = [v for v, ct in collections.Counter(allv).items() if ct > 1]
+    if dup:
+        fail(f"values listed twice: {sorted(dup)[:10]}")
+    missing = sorted(set(range(1, n + 1)) - set(allv))
+    extra = sorted(v for v in allv if v < 1 or v > n)
+    if missing:
+        fail(f"not a partition of [1,{n}]: missing {missing[:10]}")
+    if extra:
+        fail(f"out of range: {extra[:10]}")
+    for c, S in classes.items():
+        Sset = set(S)
+        for x in S:
+            for y in S:
+                if x + y <= n and (x + y) in Sset:
+                    fail(f"monochromatic {x}+{y}={x + y} in colour {c}")
+    ok(f"partition of [1,{n}] into {len(classes)} sum-free classes")
+
+
 def main():
     if len(sys.argv) < 2:
         print(__doc__)
@@ -104,6 +137,8 @@ def main():
     mode = sys.argv[1]
     if mode == "schur":
         check_schur(sys.argv[2])
+    elif mode == "schurfile":
+        check_schur_file(sys.argv[2], int(sys.argv[3]))
     elif mode == "vdw":
         check_vdw(sys.argv[2], sys.argv[3])
     elif mode == "ramsey":

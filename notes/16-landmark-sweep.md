@@ -15,23 +15,55 @@ code that produced it.
 `S(r)` = largest `n` with a colouring of `[1,n]` by `r` colours avoiding a
 monochromatic `x + y = z`.
 
-Independent implementation, plain DFS with the colour-ordering symmetry break
-(colours introduced in order of first appearance; `col(1) = 0`):
+### Bounds for `S(6)` — a fifth stale fact of mine
 
-| `r` | claimed `S(r)` | `[1,S]` feasible | `[1,S+1]` infeasible |
-|---|---|---|---|
-| 3 | 13 | yes | yes |
-| 4 | 44 | yes | yes |
-| 5 | 160 | **not found** | — |
+I gave `536 ≤ S(6) ≤ 1839`. Both ends are wrong.
 
-Both known values reproduce on both sides, so the implementation is sound. The
-`S(4)=44` infeasibility took 2.2×10⁸ nodes / 14 s; the unsymmetrised version took
-1.3×10⁹ nodes / 20 s, so the symmetry break buys a factor of six and no more.
+- **Lower.** 536 (Fredricksen–Sweet, EJC 2000) was beaten twice in late 2026: 537
+  (Chen–Zhu–Long, arXiv:2610.31362) and then **538** (McKenna, Zenodo 10.5281/
+  zenodo.23937655, 2026-11-04, with a Lean 4 proof and certificate).
+- **Upper.** The published bound is **1836**, not 1839 — Eliahou–Revuelta, Discrete
+  Math. 344(5):112332 (2021), via `S(n) ≤ R_n(3) − 2` with `R₆(3) ≤ 1838`. No source
+  for 1839 could be found.
 
-`S(5) = 160` is **not reachable by this method**: 15 minutes of DFS on the feasible
-side found no colouring. Heule's proof used SAT with cube-and-conquer, and that is
-the only method that scales here. Recording the failure is the point — it fixes the
-method's ceiling at `r = 4` and says not to spend more compute below it.
+So the standing range is
+
+    538 ≤ S(6) ≤ 1836.
+
+### Certificates verified here
+
+Parsed and checked with my own code — every distinct pair `x, y` in each class
+tested against `x + y = z`, with `x = y` allowed:
+
+| object | classes | verified |
+|---|---|---|
+| `[1,538]` 6-colouring (McKenna) | 6 | complete partition, 0 monochromatic sums |
+| `[1,537]` 6-colouring (Chen–Zhu–Long) | 6 | complete partition, 0 monochromatic sums |
+| `[1,160]` 5-colouring | 5 | complete partition, 0 monochromatic sums |
+| `[1,44]` 4-colouring | 4 | complete partition, 0 monochromatic sums |
+
+Each is an exact cover of `[1,n]` with no repeats and nothing out of range, so
+`S(6) ≥ 538`, `S(6) ≥ 537`, `S(5) ≥ 160`, `S(4) ≥ 44` all hold. The `538` bound in
+particular rests on a verified object, so it holds regardless of the certificate's
+publication status — but note that provenance is Zenodo-only, not refereed.
+
+### Exact values by exhaustive search
+
+Plain DFS with the colour-ordering symmetry break (colours introduced in first-
+appearance order, `col(1) = 0`):
+
+| `r` | `S(r)` | `[1,S]` feasible | `[1,S+1]` infeasible | nodes at `S+1` |
+|---|---|---|---|---|
+| 3 | 13 | yes | yes | 651 |
+| 4 | 44 | yes | yes | 2.2×10⁸ |
+| 5 | 160 | no (15 min) | — | — |
+
+The symmetry break buys a factor of six on `S(4)` (1.3×10⁹ → 2.2×10⁸ nodes) and no
+more. **`S(5) = 160` is unreachable this way** — the feasible side alone found no
+colouring in 15 minutes. Heule's proof used SAT with cube-and-conquer, and that is
+the only method that scales. Two independent implementations (this one and the
+agent's) both stall here, which is the useful confirmation: the ceiling is the
+method's, not a bug's. Upper bounds for `r ≥ 5` are out of scope entirely.
 
 ---
 
