@@ -290,6 +290,29 @@ distinction, and a less careful report would have called this a counterexample.
   verified: a_n(123,(12;1→3)) = 2ⁿ−n, a_n(321,(12;1→3)) = F_{2n−1}, and
   a_n(321,(12;1→2)) = M_n, each for every n up to 16.
 
+## arXiv:2608.22189 — MSTD sets — CLEAN apart from one range error
+
+Herrmann, August 2026. The classification results survive exhaustive checking: the
+smallest MSTD multiplicative subgroup really is (3221, 161), the smallest odd order
+is 141 at p = 4231, and the size-5 through size-9 classifications reproduce class
+by class (including exactly 32,928 MSTD 7-subsets of F₄₉ falling into 14 affine
+classes).
+
+**One defect, and it is a stated range rather than a result.** Theorem 1.4 says
+Conway's set {0,2,3,4,7,11,12,14} is MSTD "when char(F) = 0 or char(F) = p where
+p ≥ 29". That lower bound is too high. Computed here:
+
+| p | A+A | A−A | MSTD |
+| --- | --- | --- | --- |
+| 13 | 13 | 13 | no |
+| 17 | 17 | 17 | no |
+| **19** | **18** | **17** | **yes** |
+| 23 | 22 | 21 | yes |
+
+So the true threshold is p ≥ 19. The enumeration is unaffected, because at 19 and
+23 the set is affinely equivalent to configurations the paper already lists; only
+the sentence's characteristic range is wrong.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
