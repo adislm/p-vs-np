@@ -136,11 +136,29 @@ and exactly why the claim that they are the *only* ones is false. The theorem is
 not off by a correction term; it undercounts a block that always contains the
 positions it names.
 
-**Checked against every n from 4 to 120, with no mismatch.** This is an observed
-and verified pattern, not a proof: the range is finite and the statement is
-asserted for all n. It would be good to prove, and the shape — a block of
-`4 − (n mod 4)` positions near the centre — suggests the equality case of the
-paper's own argument is where the proof would go.
+**This is proved, not merely observed.** The argument is short.
+
+*Lemma.* If w = b^i a b^j with i + j = n − 1, then θ(w) = ⌊max(i,j)/2⌋.
+
+*Proof.* Every factor of w containing the single `a` contains exactly one `a`. An
+abelian-square factor uv has halves with equal multisets, hence equal `a`-counts;
+those counts sum to the factor's `a`-count, which is 1 — impossible. So no
+abelian-square factor contains the `a`. The abelian squares of w are therefore
+exactly the factors b^{2p} with 2p ≤ max(i,j): the run of max(i,j) consecutive
+`b`s contains each of them, and b^{2p} ≠ b^{2q} for p ≠ q. There are
+⌊max(i,j)/2⌋ of them. ∎
+
+*Corollary.* Minimising max(i, n−1−i) over i + j = n − 1 gives ⌈(n−1)/2⌉, so
+M(1,n) = ⌊⌈(n−1)/2⌉/2⌋, which is ⌊n/4⌋ by the paper's own identity. The
+minimisers are the i with max(i, n−1−i) ∈ {2M, 2M+1} for M = ⌊n/4⌋. Now
+max ≤ 2M+1 holds exactly when i ≥ n−2M−2, while max ≥ 2M is automatic: if both
+i and n−1−i were at most 2M−1 then n−1 ≤ 4M−2 < 4M ≤ n, a contradiction. So the
+minimiser set is the interval [n−2M−2, 2M+1]. Writing n = 4M + r with 0 ≤ r ≤ 3,
+its lower end is 2M+r−2, and it contains 2M+1−(2M+r−2)+1 = 4−r positions. ∎
+
+The lemma and the resulting block were also checked by brute force for every n
+below 60, with no mismatch — a check on the proof's arithmetic, not a substitute
+for it.
 
 ## 1. OEIS conjectures
 
