@@ -157,6 +157,23 @@ all and is therefore neither starlike nor (Δ,2). That is an implicit-hypothesis
 gap rather than a counterexample, and it should be read as "assuming branch
 vertices are present".
 
+## Three OEIS conjectures from 2025 — all survive
+
+Each sequence was computed from its defining object, never from the conjectured
+formula, and the entry's own terms were reproduced first.
+
+| Entry | Conjecture | Range | Result |
+| --- | --- | --- | --- |
+| A386648 | a(n) mod 6 repeats 2,3,4,3,2,5 for n > 6 | exact to n = 199; derived reduction to 10⁶ | survives |
+| A386655 | a(n) mod 6 repeats 1,0,3,0,3,2 for n ≥ 6 | n = 6..2999 | survives |
+| A383423 | the difference set is exactly {1,3,4,5,7} | 2,944,276 terms below 10⁷ | survives |
+
+**The third independently confirms a published proof.** arXiv:2610.04842 proves
+the A383423–A383427 conjectures; the computation here reproduces the realised
+difference set as exactly {1,3,4,5,7} over ten million indices, with no value
+outside it and all five occurring. Agreement between a proof and a large
+computation is worth more than either alone.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
