@@ -323,6 +323,56 @@ No circulant `C_N(S)` for `N = 42…48` witnesses the property either. SAT at `n
 (903 variables, 1.93×10⁶ clauses) timed out at 17 min, and timeouts prove nothing.
 **The range is unchanged by this work.**
 
+## Hadamard order 2396 — what the target actually is
+
+`2396 = 4·599`, `599` prime `≡ 3 (mod 4)`. Paley I would need `q = 2395 = 5·479`,
+Paley II `q = 1197 = 3²·7·19`; neither is a prime power, and `2396 = 2²·599` admits no
+nontrivial Hadamard product. So only a direct sequence construction can reach it.
+
+**The object, pinned down.** Order 2396 needs a sequence set of length 599,
+equivalently any of: T-sequences of length 599; base sequences of lengths
+`(300,300,299,299)`; Turyn sequences `(150,150,149,149)`; or a **Williamson quadruple
+of order 599** — four symmetric `±1` circulant matrices `A₁…A₄` of order 599 with
+
+    A₁² + A₂² + A₃² + A₄² = 2396·I₅₉₉ .
+
+Then the standard block array `[A B C D; −B A −D C; −C D A −B; −D −C B A]` is
+Hadamard of order 2396.
+
+**Forced arithmetic.** Normalising `a_i(0) = 1`, the row sums satisfy
+`Σ r_i² = 2396`, so every `r_i ≡ 3 (mod 4)` and `m_i ∈ [138,161]`. There is no modular
+obstruction (`2396 ≡ 4 mod 8`). Exactly 26 admissible `|r|` multisets survive. This is
+the supplementary-difference-set `λ`-condition, so it is necessary and — with the
+autocorrelation condition — equivalent.
+
+**I verified the construction claim myself**, since the whole search rests on it. The
+array is valid only because the blocks are symmetric and therefore commute; a
+non-symmetric block quadruple satisfying the same identity need not work. Brute force
+at small orders: the array is exactly Hadamard for every solution found.
+
+| `m` | solutions of `ΣAᵢ² = 4m·I` | array valid |
+|---|---|---|
+| 1 | 1 | 1/1 |
+| 3 | 4 | 4/4 |
+| 5 | 12 | 12/12 |
+| 7 | 60 | 60/60 |
+
+At `m = 3` all 64 solutions over all `±1` circulants are in fact symmetric, so no
+non-symmetric counterexample to the array construction arose there. The structural
+claim holds.
+
+**Search and its honest limit.** Simulated annealing over weight-preserving moves on
+`Williamson(599)`: 14 runs × 1.2×10⁸ moves = 1.68×10⁹ configurations, covering 14 of
+the 26 admissible weight classes. Best merit 149,888 (median 155,648) against a
+required 0; random starts sit near 1.4×10⁶. No solution.
+
+The number that matters is the **calibration**: the identical annealer solves `v ≤ 25`
+but *fails at `v = 33`*, where Williamson matrices are known to exist. So failure at
+599 is not evidence of nonexistence — the method simply has no reach at that size. The
+admissible class has ≈`10^354` configurations and 1.68×10⁹ is ≈`10^-345` of it. **No
+matrix, nothing claimed as new.** Orders 2676, 2876, 2956 need the same object with
+669, 719, 739, and 599 is the smallest, so none is more promising.
+
 ## Method notes
 
 Two of the three outcomes above are "the method does not reach". That is the normal
