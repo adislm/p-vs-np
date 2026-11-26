@@ -233,6 +233,61 @@ exhaustive check over all 27,525 connected graphs of maximum degree ≤ 3 up to 
 vertices and found no violation, matching the paper's own claimed range — so the
 example at 15 vertices is precisely one step beyond where the authors looked.
 
-### Results 1 and 5 — not verified here
+### Result 1 — distance energy maxima — CONFIRMED under the maximiser reading
 
-The remaining two claims were not checked and are not endorsed by this file.
+**Conjecture 4** of Caporossi–Chasset–Furtula, GERAD G-2009-64 (2009), as
+restated by Aouchiche–Hansen (LAA 458, 2014) as Conjecture 8.12: among all graphs
+of order n and size m with n ≤ m ≤ (n−2)(n−3)/2, the path–complete graph PK_{n,m}
+maximises the distance energy E_D = Σ|µᵢ|, the sum of absolute values of the
+distance-matrix eigenvalues.
+
+**Witness:** the 12-vertex, 44-edge graph with graph6 string `K]Nxnsor}^^R`.
+Recomputed here from the graph6 string, without using the other group's code:
+
+    E_D(counterexample) = 37.1446819434515
+    E_D(PK_{12,44})     = 36.8942393990325
+    gap                 = +0.250442544419
+
+The extremal comparison is unambiguous because **PK_{12,44} is unique**: among all
+path–complete graphs with 12 vertices and 44 edges, exactly one exists, K₉ together
+with a 3-vertex path whose first vertex joins 6 clique vertices. There is no
+stronger competitor to appeal to. The constraint holds too: 44 < 45 = (n−2)(n−3)/2.
+
+Independently, the other group enclosed the eigenvalues with exact Sturm sequences
+and rational interval arithmetic to a width below 3×10⁻³⁰, so the gap is not a
+numerical artefact. My float64 recomputation agrees to twelve digits.
+
+**A necessary caveat about the statement.** Read literally — "Let G be a graph on
+n vertices and m ≤ (n−2)(n−3)/2 edges, then G is composed of a path appended to a
+clique" — the conjecture is trivially false, since a cycle satisfies the hypothesis
+and has no such form. The substantive claim is the maximiser reading, and that is
+what the counterexample defeats. Recording this distinction matters: the defect is
+in the mathematics, not in an ambiguity of wording.
+
+**Still open as far as we can tell.** No proof or refutation surfaced; the 2014
+survey still lists it as Conjecture 8.12. Absence of evidence in a search is not
+proof of openness, and that is stated as the limit of this claim.
+
+## 5. arXiv:2611.19635 — box-free colourings — clean audit
+
+Alm and Miller, *Constructive and computational methods for extremal and
+near-extremal box colorings*, November 2026. No defect found.
+
+**Every table reproduces.** Table 2's 21 cells of ρ(a,b) all match, and the 14
+nonzero entries each have an Appendix-A colouring matrix which recomputes exactly
+from the definition; an exact branch-and-bound settled 19 of the 21 cells
+exhaustively, with the remaining two following from the paper's convexity bound,
+which was re-derived. Table 3's fifteen layer bounds all equal ⌊2·C(a,2)C(b,2)/ρ⌋
+exactly. Table 4's thresholds are exact.
+
+**Every certificate checks.** The GitHub constructions for 3×7×126, 4×7×126,
+5×5×100, 5×6×75, 6×6×75 and 5×7×50 were downloaded and verified independently:
+each is box-free with every layer attaining exactly ρ.
+
+**Both conjectures remain open, with their supporting bounds confirmed**: N(5,7) ≥
+50 from a verified certificate, and m(11) ≤ 8 from one with exactly eight boxes.
+Neither was refuted by direct search.
+
+**One honest improvement, not an error.** An independent min-conflicts search found
+slightly better values than the paper's Table 4 empirical minima (1709 vs 1711,
+and so on). That is a stronger construction, not a defect in theirs.
