@@ -174,6 +174,51 @@ difference set as exactly {1,3,4,5,7} over ten million indices, with no value
 outside it and all five occurring. Agreement between a proof and a large
 computation is worth more than either alone.
 
+## arXiv:2505.11403 — a linear factor-complexity conjecture is FALSE
+
+Abdullah and Hamoud, May 2025. **Conjecture 2.8, verbatim**: "The factor
+complexity p(k) of W_{A,σ,a₀} is linear. Specifically, for sufficiently large k,
+p(k) = (N−1)k + C_N for some constant C_N that depends on N."
+
+**The slope is wrong, and by a lot.** Take N = 3 with σ: 0→01, 1→12, 2→20. Its
+fixed point is W(n) = s₂(n) mod 3, where s₂ is the binary digit sum — I checked
+the first eight symbols are `01121220`, matching the morphism. Counting distinct
+factors of length k in a prefix of length 2¹⁸:
+
+| k | p(k) | p(k)/k | conjectured slope |
+| --- | --- | --- | --- |
+| 2 | 9 | 4.500 | 2 |
+| 8 | 54 | 6.750 | 2 |
+| 32 | 234 | 7.313 | 2 |
+| 64 | 474 | 7.406 | 2 |
+| 128 | 954 | 7.453 | 2 |
+| 256 | 1914 | 7.477 | 2 |
+
+**Recomputed here independently** from the digit-sum definition, and the ratio is
+climbing steadily toward 7.5 = N(2N−1)/2, with no sign of levelling at 2. The
+other audit adds the finer structure — every increment p(k) − p(k−1) for k up to
+16400 is 6 or 9, never N−1 — and the same failure at N = 4 (ratio → 14, claimed 3)
+and N = 5 (ratio → 22.5, claimed 4).
+
+**A second, smaller defect in the same paper.** The proof of Theorem 2.6 asserts
+that every length-3 factor of W has the form xσ(x)σ²(x). That is false: W begins
+`01121220`, which contains `112`, while {xσ(x)σ²(x)} = {012, 120, 201}. The
+theorem itself survived testing; it is the proof's first step that is unsupported.
+
+## arXiv:2605.26916 — preorder polytopes — CLEAN, one index slip
+
+Athanasiadis and Chapoton, May 2026. Conjectures 4.4, 4.8, 5.3 and 5.4 all held
+under exact enumeration — all 4 preorders on 2 elements and all 29 on 3, with
+Ehrhart polynomials interpolated exactly, and the paper's worked examples
+reproduced (Delannoy numbers 2, 5, 12, 29, 70 and h₅ = (1,9,25,25,9,1)).
+
+**One defect, in a table.** §9.3 tabulates the poset C_n × C₂ minus its minimum
+and maximum: "n=1: 4, (1,2,1); n=2: 29, (1,7,13,7,1); n=3: 265". But the count
+sequence 1, 4, 29, 265 is L_n = 1, 4, 29, 265 for n = 1, 2, 3, 4 — every row is
+indexed one too low, and the n = 1 row (a single point, h = (1)) is missing. The
+paper's own generating function corroborates: its x^n coefficient is −L_n with
+L₁ = 1, L₂ = 4. An indexing slip in the table, not in the mathematics.
+
 ## What this batch shows
 
 The distribution of outcomes is the useful part. Twenty papers, one small
