@@ -85,6 +85,39 @@ found by exhaustive search and confirmed by the paper's own data. It is not a de
 result and it does not affect the paper's main theorems. The honest description is
 that clause 2 needs the qualifier n ≥ 5.
 
+## A second defect in the same paper: Theorem 6 is false
+
+Auditing the rest of arXiv:2604.23188 after the Conjecture 4 finding turned up a
+more serious problem. This one is a **theorem**, not a conjecture.
+
+**Theorem 6, verbatim:** "For positive integers n we have M(1, n) = ⌊n/4⌋. The
+only words with one a and exactly M(1, n) abelian squares are
+b^{⌈(n−1)/2⌉} a b^{⌊(n−1)/2⌋} and its reverse."
+
+**The value is right; the characterisation is not.** At n = 5, take
+`babbb` = b¹ab³, or its reverse `bbbab` = b³ab¹. Each has exactly one `a`, and its
+only distinct abelian-square factor is `bb`, so θ = 1 = M(1,5). The claimed words
+are `bbabb` = b²ab² and its reverse, and `babbb` is neither.
+
+**The failure has a clean pattern.** It occurs at n = 4, 5, 8, 9, 12, 13 — that
+is, for every n ≡ 0 or 1 (mod 4) — and does not occur at n = 6, 7, 10, 11, 14.
+At n = 4 the additional minimisers are `abbb` and `bbba`. The value M(1,n) = ⌊n/4⌋
+appears to be correct throughout; what fails is the claim that the two symmetric
+words are the only minimisers.
+
+**The convention matters and is pinned by the paper itself.** Counting
+occurrences rather than distinct factors would give θ(`bbabb`) = 2, since `bb`
+occurs twice, contradicting the paper's own M(1,5) = 1. So the paper's tables
+force the distinct-factor reading, and under that reading the counterexample is
+sound.
+
+**Verification.** Computed independently during this audit with a separately
+written enumerator: all binary words at each n, θ by exhaustive factor
+enumeration, minimisers compared against the claimed two. The pattern above
+reproduces exactly. Two bugs in the first version of that enumerator were found
+and fixed before the result was accepted — worth recording, because the first
+version appeared to confirm and deny the finding in turn.
+
 ## 1. OEIS conjectures
 
 Four conjectures attached to OEIS entries, all still standing over the ranges
