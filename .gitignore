@@ -26,3 +26,12 @@ verify_ha_scripts/
 verify_work/
 paper_check/
 audit-23757254/
+
+# agent working directories; source of truth is notes/, lean/, tools/, expmath/
+audit*/
+verify*/
+reverify/
+paper_check/
+target_*/
+*_work/
+*_scripts/
