@@ -8,3 +8,11 @@ work/
 
 # private correspondence, not published
 outreach/
+
+# downloaded sources and compiled artefacts; scripts are kept
+__pycache__/
+*.pyc
+audit/paper/
+audit/data/
+audit/*.xml
+audit/*.html
