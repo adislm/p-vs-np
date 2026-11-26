@@ -17,6 +17,9 @@ so a claim can be re-run rather than trusted.
 | `scripts/spec.py`, `scripts/energy.py` | spectral and positive-square-energy conjectures, all connected graphs |
 | `scripts/dom2.py` | total domination vs the annihilation bound |
 | `scripts/tree6b.py`, `scripts/verify_hp.py` | tree inequalities and witness verification |
+| `scripts/oeis_cub2.py` | A375785, integer cuboids with surface 6n² |
+| `scripts/oeis_perm.py` | A397619, permutations with prime adjacent products |
+| `scripts/oeis_primedfs2.py` | A392666, sign conjecture for a triangle recurrence |
 
 Run with `python3 -I scripts/<name>.py`. Several need `networkx`, `sympy` or
 `gmpy2`; the imports at the top of each file say which.

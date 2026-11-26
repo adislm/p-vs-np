@@ -173,6 +173,33 @@ is finding the intended objects and not merely some strong pseudoprime.
 that holds to n = 12 is weak evidence. This one is recorded for completeness, not
 as a meaningful test.
 
+## 1b. OEIS conjectures, second batch
+
+Three entries added in 2024–2026, so newer and less tested than the first batch.
+Each sequence was computed from its defining object or recurrence — never from the
+conjectured property — and the published terms were reproduced before any test.
+
+| Entry | Conjecture | Published check | Range reached | Result |
+| --- | --- | --- | --- | --- |
+| A375785 | every term is odd (integer cuboids with surface 6n²) | 36 terms | n ≤ 2000 | survives |
+| A397619 | a(n) > 0 (permutations with p(i)p(i+1)+1 prime) | n ≤ 27 | n ≤ 200 | survives |
+| A392666 | T(n,k) ≥ 0 for even n | even n ≤ 400 | even n ≤ 6000 | survives |
+
+**The middle one has an argument attached, not just a search.** For a permutation
+of [n], two adjacent odd values would give odd·odd + 1, which is even and exceeds
+2 unless both values are 1 — impossible in a permutation, since 1 occurs once.
+So no two odd values are adjacent, the ⌈n/2⌉ odd values form an independent set
+of the n-vertex path, and every valid permutation must alternate odd and even.
+The search then only has to find one alternating arrangement for each n, which it
+does for every n ≤ 200. That converts a long computation into a short structural
+reduction plus a small search, and it is why this entry survives with more
+confidence than a bare enumeration would give.
+
+**A392666 is the largest range extension here** — fifteen times the author's
+stated check. The triangle row n = 10 was re-derived independently during this
+audit: 1, 104849, 45588716, 925915724, 3563737526, 3563737526, 925915724,
+45588716, 104849, 1, matching the published row exactly.
+
 ## 2. Antimagic conjectures in graph theory
 
 Three open conjectures, all searched over every graph in a range, with a verified
