@@ -77,6 +77,7 @@ notes/
   10-2026-record.md      verified snapshot of what moved in 2026
   11-frontier-programmes.md  bounded arithmetic, meta-complexity, the algorithmic method
   12-experimental-search.md  counterexample hunts: one falsification, the rest survived
+  13-deep-audits.md      line-by-line audits of recent papers
 lean/
   PVNP/Basic.lean        languages, PolyTime, MemP, MemNP, Reduces, NP-hard/complete
   PVNP/Arith.lean        the length arithmetic behind closure of NP under reduction
