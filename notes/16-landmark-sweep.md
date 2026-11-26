@@ -373,9 +373,96 @@ admissible class has ≈`10^354` configurations and 1.68×10⁹ is ≈`10^-345` 
 matrix, nothing claimed as new.** Orders 2676, 2876, 2956 need the same object with
 669, 719, 739, and 599 is the smallest, so none is more promising.
 
-## Method notes
+## Van der Waerden — the sixth stale fact, and one certificate that fails
 
-Two of the three outcomes above are "the method does not reach". That is the normal
-shape of this exercise. The useful outputs are the reproduced values, the corrected
-attributions, and the stated ceiling of each method — not the absence of
-counterexamples.
+`W(r,k)` = least `N` such that every `r`-colouring of `[1,N]` has a monochromatic
+`k`-term arithmetic progression.
+
+**Correction.** I gave `W(3,5) ∈ [1008, 1127]`. That is impossible: the known lower
+bound is `W(3,5) > 2173`, so 1127 cannot be an upper bound, and I can find no source
+for either number under the standard convention. Exact values that are solid:
+`W(2,3)=9`, `W(2,4)=35`, `W(2,5)=178`, `W(2,6)=1132`, `W(3,3)=27`, `W(3,4)=293`,
+`W(4,3)=76`.
+
+**Certificates checked here**, with my own code — every `(start, difference)` pair
+tested, so this is exhaustive over arithmetic progressions, not sampling:
+
+| certificate | length | colours | mono-`k`-APs | gives |
+|---|---|---|---|---|
+| `cert_w24_34` | 34 | 2 | 0 (largest mono AP 3) | `W(2,4) ≥ 35` |
+| `cert_w25_177` | 177 | 2 | 0 (largest 4) | `W(2,5) ≥ 178` |
+| `cert_w27_3703` | 3703 | 2 | 0 (largest 6) | `W(2,7) > 3703` |
+| `cert_w35_2173` | 2173 | 3 | 0 (largest 4) | `W(3,5) > 2173` |
+| `cert_w53_171` | 171 | 5 | **9** | **fails** |
+
+Four verify exactly. The last **does not**: it contains nine monochromatic 3-term
+progressions, including `s[0]=s[16]=s[32]='a'` and `s[4]=s[12]=s[20]='a'`. So the
+artifact does not witness `W(5,3) > 170`, and it is not the "direct 170-term
+certificate" it was reported as — it is 171 symbols long and invalid.
+
+The bound `W(5,3) > 170` is nevertheless true and well established (Rabung–Lotts;
+Heule's published colourings); it is the *file* that fails, not the theorem. This is
+the one case in the whole sweep where an agent's own artifact did not survive
+independent checking, and it is the reason the checking step exists.
+
+**Upper bounds.** The agent's SAT runs found `N = 35`, `178`, `27` unsatisfiable, which
+together with the certificates would pin `W(2,4)=35`, `W(2,5)=178`, `W(3,3)=27`. I
+verified only the lower-bound certificates here, not the UNSAT proofs.
+
+**No improvement.** Single-symbol insertion at every position and colour into each
+certificate (6,522 and 7,408 insertions) extended nothing; two-end insertions over all
+cyclic rotations failed; depth-limited repair found no `2174` colouring. No new bound.
+
+## What this sweep actually produced
+
+Ten landmark problems. **Zero counterexamples, zero improved bounds.** That was the
+expected outcome and it is not the point.
+
+The point is this table. Every premise I brought into the sweep was checked against
+the literature, and six of them were wrong:
+
+| I asserted | Actually | Found by |
+|---|---|---|
+| Hadamard order 668 undecided | resolved Aug 2026; frontier 2396 | Hadamard agent |
+| `R(3,10) = 40` | open, `40 ≤ R(3,10) ≤ 41` | Ramsey agent |
+| `R(5,5) ≤ 48` | `≤ 46` (Angeltveit–McKay 2026) | R(5,5) agent |
+| 7-runner lonely runner = Baranwal et al. | Barajas–Serra 2008 | Lonely runner agent |
+| Caccetta–Häggkvist `r=2,3` open | both settled (1978, 1987) | CH agent |
+| `536 ≤ S(6) ≤ 1839` | `538 ≤ S(6) ≤ 1836` | Schur agent |
+| `W(3,5) ∈ [1008,1127]` | `W(3,5) > 2173` | VdW agent |
+
+Six of six checked premises wrong. Two further errors of framing — `3^{n(n−1)}` for
+the digraph count and "two smallest unknown Ramsey numbers" — were also caught. The
+substance of this sweep is a correction to the repo's own notes, not new mathematics.
+
+### What was verified as fact
+
+Not nothing. These are certified objects, checked here by code written independently
+of whatever produced them, so they hold irrespective of publication status:
+
+- `S(6) ≥ 538`, `S(5) ≥ 160`, `S(4) ≥ 44` — explicit colourings, in `certs/schur/`.
+- `W(2,4) ≥ 35`, `W(2,5) ≥ 178`, `W(2,7) > 3703`, `W(3,5) > 2173` — colourings checked
+  over every arithmetic progression.
+- `R(4,5) ≥ 25`, `R(3,9) ≥ 36`, `R(3,10) ≥ 40`, `R(5,5) ≥ 43` — graphs checked with
+  exact clique and independence numbers.
+- `S(3) = 13`, `S(4) = 44` — exact, both directions.
+- The Williamson block array is valid — checked at `m = 1,3,5,7`.
+
+### What failed to verify
+
+One artifact: the purported `W(5,3) > 170` certificate, which has nine monochromatic
+3-term progressions. The theorem is true; the file is not a witness. Ten agents, one
+bad artifact, caught by checking.
+
+### The honest conclusion
+
+Landmark problems are landmark because decades of effort have already been spent on
+them. A bounded computation reaches a vanishing fraction of the space, and the methods
+that do reach are calibrated failures — the lonely-runner bounds are only finite
+because speed bounds are enormous, and the Williamson annealer fails at `v = 33` where
+solutions are known, let alone `v = 599`.
+
+The right thing to take from this is not that the problems are attackable, but that
+the discipline held: every number here can be reproduced, every range is stated
+exactly, and the one claim whose certificate did not check out was caught rather than
+published.

@@ -60,7 +60,8 @@ Grouped by what a search can actually produce.
   out of reach.
 - **Schur numbers.** `S(5) = 160` known; `S(6)` open. Lower bound = a colouring,
   upper bound = exhaustive search.
-- **van der Waerden numbers.** `W(2,6) = 1132`, `W(3,5) ∈ [1008, 1127]`. Small open
+- **van der Waerden numbers.** `W(2,6) = 1132`; `W(3,5) > 2173` (the bound is a
+  lower bound — an earlier `[1008, 1127]` in this note was simply wrong). Small open
   values are SAT-attackable.
 - **Rado numbers** for simple equations — same structure as Schur.
 
