@@ -16,3 +16,13 @@ audit/paper/
 audit/data/
 audit/*.xml
 audit/*.html
+
+# agent working clones; never commit these
+broken-conjectures/
+verify/
+verify5/
+verify_ha/
+verify_ha_scripts/
+verify_work/
+paper_check/
+audit-23757254/
